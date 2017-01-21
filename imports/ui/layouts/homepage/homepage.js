@@ -9,7 +9,7 @@ import './homepage.css';
 Template.homepage.events({
   'submit form'(event) {
     event.preventDefault()
-    Session.set('name', event.target.name.value);
+    Session.set('username', event.target.username.value);
     FlowRouter.go('createPage');
   }
 })
