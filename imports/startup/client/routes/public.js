@@ -6,6 +6,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../../ui/layouts/homepage/homepage';
 import '../../../ui/layouts/party/party';
 import '../../../ui/layouts/create/create';
+import '../../../ui/layouts/createparty/createparty';
 
 FlowRouter.route('/', {
   name: 'indexPage',
@@ -18,6 +19,13 @@ FlowRouter.route('/create', {
   name: 'createPage',
   action() {
     BlazeLayout.render('main', { content: 'create' });
+  },
+});
+
+FlowRouter.route('/create/party', {
+  name: 'createPartyPage',
+  action() {
+    BlazeLayout.render('main', { content: 'createparty' });
   },
 });
 
