@@ -12,7 +12,7 @@ Template.youtubeplayer.onRendered(() => {
     player = new YT.Player('video-placeholder', {
         width: 600,
         height: 400,
-        videoId: 'Xa0Q0J5tOP0',
+        videoId: 'SSbBvKaM6sk',
         events: {
             onReady: initialize,
             onStateChange: onStateChange,
