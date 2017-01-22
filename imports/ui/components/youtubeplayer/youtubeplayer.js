@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
+import { Session } from 'meteor/session'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
 
 import Party from '../../../api/party/party'
@@ -51,7 +52,13 @@ Template.youtubeplayer.onRendered(() => {
   function onStateChange(state) {
     // video has ended
     if (!state.data) {
-      player.cueVideoById('1oJEBGHCdBQ')
+      Meteor.call('party.endSong', playlistId, (err, res) => {
+        if (err) {
+          console.warn(err)
+        } else {
+          console.log(res)
+        }
+      })
     }
   }
 
@@ -101,6 +108,10 @@ Template.youtubeplayer.helpers({
   getName() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? party.name : ''
+  },
+
+  getUsername() {
+    return Session.get('username')
   },
 
   nbBurds() {

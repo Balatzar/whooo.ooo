@@ -28,5 +28,14 @@ Meteor.methods({
         toPlay: song,
       }
     })
+  },
+
+  'party.nextSong'(playlistId) {
+    const party = findOne(playlistId)
+    return Party.update(playlistId, {
+      $set: { currentSong: party.toPlay[0] },
+      $pop: { toPlay: -1 },
+      $push: { played: party.currentSong }
+    })
   }
 });
