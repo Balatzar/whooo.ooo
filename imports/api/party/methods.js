@@ -10,6 +10,7 @@ Meteor.methods({
     const party = {
       creator,
       name,
+      currentSong: song,
       songs: [song],
       toPlay: [song],
       played: [],

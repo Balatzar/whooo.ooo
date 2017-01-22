@@ -1,28 +1,49 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
+import { Tracker } from 'meteor/tracker'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
 
 import Party from '../../../api/party/party'
+import Song from '../../../api/song/song'
 
 import './youtubeplayer.html';
 import './youtubeplayer.css';
 
 var time_update_interval = 0
+var player = undefined
 
 Template.youtubeplayer.onRendered(() => {
   Meteor.subscribe('parties.all')
+  Meteor.subscribe('songs.all')
+  const playlistId = Template.currentData().playlistId
 
   onYouTubeIframeAPIReady = () => {
     player = new YT.Player('video-placeholder', {
         width: 600,
         height: 400,
-        videoId: 'SSbBvKaM6sk',
         events: {
             onReady,
             onStateChange,
         }
     });
   }
+
+  Tracker.autorun(function() {
+    const party = Party.findOne(playlistId)
+    if (party) {
+      var currentSong = Song.findOne(party.currentSong).id
+      if (player) {
+        player.cueVideoById(currentSong)
+      } else {
+        const wait = setInterval(() => {
+          if (player && player.cueVideoById) {
+            player.cueVideoById(currentSong)
+            clearInterval(wait)
+          }
+        }, 100)
+      }
+    }
+  });
 
   function onStateChange(state) {
     // video has ended

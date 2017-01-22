@@ -12,7 +12,6 @@ Template.create.events({
 
   'submit form'(event) {
     event.preventDefault()
-    Session.set('username', event.target.username.value);
-    FlowRouter.go('createPage');
+    FlowRouter.go(`/party/${event.target.party_id.value}`);
   }
 })

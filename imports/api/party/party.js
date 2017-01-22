@@ -11,6 +11,10 @@ const partySchema = new SimpleSchema({
     type: String,
     optional: false,
   },
+  currentSong: {
+    type: String,
+    optional: false,
+  },
   songs: {
     type: [String],
     optional: false,
