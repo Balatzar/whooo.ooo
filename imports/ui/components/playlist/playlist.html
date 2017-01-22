@@ -1,0 +1,14 @@
+<template name="playlist">
+  passes
+  {{ #each played }}
+    {{ > song }}
+  {{ /each }}
+  current
+  {{ #with current }}
+    {{ > song }}
+  {{ /with }}
+  to play
+  {{ #each toPlay }}
+    {{ > song }}
+  {{ /each }}
+</template>
