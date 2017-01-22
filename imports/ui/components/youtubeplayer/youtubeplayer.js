@@ -37,11 +37,11 @@ Template.youtubeplayer.onRendered(() => {
     if (party) {
       var currentSong = Song.findOne(party.currentSong).id
       if (player) {
-        player.cueVideoById(currentSong)
+        player.loadVideoById(currentSong)
       } else {
         const wait = setInterval(() => {
-          if (player && player.cueVideoById) {
-            player.cueVideoById(currentSong)
+          if (player && player.loadVideoById) {
+            player.loadVideoById(currentSong)
             clearInterval(wait)
           }
         }, 100)

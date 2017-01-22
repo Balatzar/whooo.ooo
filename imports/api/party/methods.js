@@ -20,9 +20,9 @@ Meteor.methods({
     return result
   },
 
-  'party.addSong'(url, playlistId) {
+  'party.addSong'(url, partyId) {
     const song = Song.insert(url)
-    return Party.update({ _id: playlistId }, {
+    return Party.update({ _id: partyId }, {
       $push: {
         songs: song,
         toPlay: song,
@@ -30,9 +30,9 @@ Meteor.methods({
     })
   },
 
-  'party.nextSong'(playlistId) {
-    const party = findOne(playlistId)
-    return Party.update(playlistId, {
+  'party.endSong'(partyId) {
+    const party = Party.findOne(partyId)
+    return Party.update(partyId, {
       $set: { currentSong: party.toPlay[0] },
       $pop: { toPlay: -1 },
       $push: { played: party.currentSong }
