@@ -8,14 +8,15 @@ import './youtubeplayer.css';
 var time_update_interval = 0
 
 Template.youtubeplayer.onRendered(() => {
+  console.log(Template.currentData())
   onYouTubeIframeAPIReady = () => {
     player = new YT.Player('video-placeholder', {
         width: 600,
         height: 400,
         videoId: 'SSbBvKaM6sk',
         events: {
-            onReady: initialize,
-            onStateChange: onStateChange,
+            onReady,
+            onStateChange,
         }
     });
   }
@@ -27,7 +28,7 @@ Template.youtubeplayer.onRendered(() => {
     }
   }
 
-  function initialize(){
+  function onReady() {
 
       // Clear any old interval.
       clearInterval(time_update_interval);
