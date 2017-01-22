@@ -1,7 +1,17 @@
 <template name="homepage">
-  <h2>Quel est ton nom ?</h2>
-  <form>
-    <input type="text" name="username" placeholder="Mon nom">
-    <button type="submit">Voila</button>
-  </form>
+<div class="container centered">
+	  <h2>Quel est ton nom ?</h2>
+	  <form>
+	    <fieldset class="form-fieldset ui-input __first">
+	      <input type="text" id="username" tabindex="0" />
+	      <label for="username">
+	        <span data-text="Username">Username</span>
+	      </label>
+	    </fieldset>
+
+	    <div class="form-footer">
+	      <input type="submit" class="btn" value="Create Account" />
+	    </div>
+	  </form>
+  </div>
 </template>
