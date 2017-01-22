@@ -59,4 +59,10 @@ Meteor.methods({
       $pop: { burds: burd }
     })
   },
+
+  'party.start'(partyId) {
+    return Party.update(partyId, {
+      $set: { started: true }
+    })
+  }
 });

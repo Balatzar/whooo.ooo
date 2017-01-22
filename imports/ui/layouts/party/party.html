@@ -1,5 +1,9 @@
 <template name="party">
-  {{ > youtubeplayer playlistId=getPlaylistId }}
+  {{ #if started }}
+    {{ > youtubeplayer playlistId=getPlaylistId }}
+  {{ else }}
+    <h1>PAS ENCORE COMMENCE</h1>
+  {{ /if }}
   {{ > playlist playlistId=getPlaylistId }}
   {{ # each burds }}
     {{ > burd }}

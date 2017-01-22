@@ -116,6 +116,11 @@ Template.youtubeplayer.helpers({
     return party ? party.name : ''
   },
 
+  preparing() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? (!party.started && party.creator === Session.get('username')) : false
+  },
+
   getCreator() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? party.creator : ''
@@ -133,6 +138,16 @@ Template.youtubeplayer.helpers({
 })
 
 Template.youtubeplayer.events({
+  "click .start"() {
+    Meteor.call('party.start', Template.currentData().playlistId, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        console.log(res)
+      }
+    })
+  },
+
   "click #play"() {
     player.playVideo();
   },
