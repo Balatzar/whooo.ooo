@@ -1,4 +1,7 @@
 <template name="party">
-  {{ > youtubeplayer }}
-  {{ > addsongform }}
+  {{ > youtubeplayer playlistId=getPlaylistId }}
+  {{ # each burds }}
+    {{ > burd }}
+  {{ /each }}
+  {{ > addsongform playlistId=getPlaylistId }}
 </template>

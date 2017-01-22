@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/kadira:flow-router'
+import { Session } from 'meteor/session'
 
 import './create.css'
 import './create.html'
@@ -12,7 +13,8 @@ Template.create.events({
 
   'submit form'(event) {
     event.preventDefault()
-    Session.set('username', event.target.username.value);
-    FlowRouter.go('createPage');
+    const partyId = event.target.party_id.value
+    FlowRouter.go(`/party/${partyId}`);
+    Meteor.call('party.addBurd', Session.get('username'), partyId)
   }
 })

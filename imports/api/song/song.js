@@ -13,10 +13,6 @@ const songSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  party_id: {
-    type: String,
-    optional: true,
-  },
   burd_id: {
     type: String,
     optional: true,
@@ -28,15 +24,15 @@ const songSchema = new SimpleSchema({
 });
 
 class SongCollection extends Mongo.Collection {
-  insert(doc, callback) {
-    const ourDoc = doc;
-    const str = doc.id;
+  insert(url , callback) {
+    const ourDoc = {};
+    const str = url;
     const intIndex = str.indexOf("v=") !== -1 ? str.indexOf("v=") + 2 : str.indexOf("be/") + 3;
     const strVideoId = str.substring(intIndex, intIndex + 11);
     ourDoc.createdAt = new Date();
     ourDoc.id = strVideoId
     try {
-      check(doc, songSchema);
+      check(ourDoc, songSchema);
       const result = super.insert(ourDoc, callback);
       return result;
     } catch (e) {
