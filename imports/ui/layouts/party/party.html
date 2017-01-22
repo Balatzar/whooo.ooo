@@ -5,9 +5,13 @@
       {{ > addsongform playlistId=getPlaylistId }}
     </div>
   </div>
+  {{ #if started }}
   <div class="container center player">
     {{ > youtubeplayer playlistId=getPlaylistId }}
   </div>
+  {{ else }}
+    <h1>PAS ENCORE COMMENCE</h1>
+  {{ /if }}
   <div class="container side last participants">
     {{ # each burds }}
       {{ > burd }}

@@ -32,6 +32,7 @@ Meteor.methods({
 
   'party.nextSong'(partyId) {
     const party = Party.findOne(partyId)
+    if (!party.toPlay.length) return
     return Party.update(partyId, {
       $set: { currentSong: party.toPlay[0] },
       $pop: { toPlay: -1 },
@@ -41,6 +42,7 @@ Meteor.methods({
 
   'party.previousSong'(partyId) {
     const party = Party.findOne(partyId)
+    if (!party.played.length) return
     return Party.update(partyId, {
       $set: { currentSong: party.played[party.played.length - 1] },
       $pop: { played: 1 },
@@ -59,4 +61,10 @@ Meteor.methods({
       $pop: { burds: burd }
     })
   },
+
+  'party.start'(partyId) {
+    return Party.update(partyId, {
+      $set: { started: true }
+    })
+  }
 });

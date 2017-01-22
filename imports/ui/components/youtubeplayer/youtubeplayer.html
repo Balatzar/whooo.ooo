@@ -1,6 +1,9 @@
 <template name="youtubeplayer">
   <p><h2>{{ getName }}</h2> par {{ getCreator }}</p>
   <div id="video-placeholder"></div>
+  {{ #if preparing }}
+    <button class="start">Commencer</button>
+  {{ /if }}
   <button id="play">play</button>
   <button id="pause">pause</button>
   volume

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { FlowRouter } from 'meteor/kadira:flow-router'
+import { Session } from 'meteor/session'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
@@ -17,6 +18,11 @@ Template.party.onRendered(() => {
 })
 
 Template.party.helpers({
+  started() {
+    const party = Party.findOne(FlowRouter.current().params.id)
+    return party ? (party.started || party.creator === Session.get('username')) : false
+  },
+
   getPlaylistId() {
     return FlowRouter.current().params.id
   },
