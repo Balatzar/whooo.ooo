@@ -1,8 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
+import { HTTP } from 'meteor/http'
 
-const regex = new RegExp("^(<https\\:\\/\\/)?(www\\.youtube\\.com|youtu\\.?be)\\/.+$");
+const regex = new RegExp("^(<https\\:\\/\\/)?(www\\.youtube\\.com|youtu\\.?be)\\/.+$")
+const youtubeurl = 'https://www.googleapis.com/youtube/v3/videos'
 
 const songSchema = new SimpleSchema({
   id: {
@@ -14,6 +16,10 @@ const songSchema = new SimpleSchema({
     optional: true,
   },
   burd_id: {
+    type: String,
+    optional: true,
+  },
+  image: {
     type: String,
     optional: true,
   },
@@ -32,6 +38,12 @@ class SongCollection extends Mongo.Collection {
     ourDoc.createdAt = new Date();
     ourDoc.id = strVideoId
     try {
+      const res = HTTP.get(`${youtubeurl}?part=snippet&id=${strVideoId}&key=${Meteor.settings.YOUTUBEAPI}`)
+      const yt = res.data.items[0].snippet
+      console.log(yt)
+      ourDoc.name = yt.title
+      ourDoc.image = yt.thumbnails.standard.url
+      console.log(ourDoc)
       check(ourDoc, songSchema);
       const result = super.insert(ourDoc, callback);
       return result;
