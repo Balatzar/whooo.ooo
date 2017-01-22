@@ -4,7 +4,8 @@ import { check } from 'meteor/check';
 import Song from './song.js';
 
 Meteor.methods({
-  'song.create'(song) {
-    const result = Song.insert(song)
-  }
+  'song.create'(url) {
+    const result = Song.insert(url)
+    return result
+  },
 });

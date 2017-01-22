@@ -24,6 +24,9 @@ Template.youtubeplayer.onRendered(() => {
         events: {
             onReady,
             onStateChange,
+        },
+        playerVars: {
+          controls: 0,
         }
     });
   }
@@ -98,6 +101,16 @@ Template.youtubeplayer.helpers({
   getName() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? party.name : ''
+  },
+
+  nbBurds() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? party.burds.length : ''
+  },
+
+  remaining() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
   }
 })
 

@@ -24,7 +24,7 @@ const songSchema = new SimpleSchema({
 });
 
 class SongCollection extends Mongo.Collection {
-  insert({ url }, callback) {
+  insert(url , callback) {
     const ourDoc = {};
     const str = url;
     const intIndex = str.indexOf("v=") !== -1 ? str.indexOf("v=") + 2 : str.indexOf("be/") + 3;

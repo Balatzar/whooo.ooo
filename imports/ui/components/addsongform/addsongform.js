@@ -7,6 +7,12 @@ import './addsongform.html'
 Template.addsongform.events({
   'submit form'(event) {
     event.preventDefault()
-    console.log(event.target.id.value)
+    Meteor.call('party.addSong', event.target.url.value, Template.currentData().playlistId, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        event.target.url.value = ''
+      }
+    })
   }
 })
