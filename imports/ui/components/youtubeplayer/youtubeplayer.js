@@ -2,13 +2,16 @@ import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
 
+import Party from '../../../api/party/party'
+
 import './youtubeplayer.html';
 import './youtubeplayer.css';
 
 var time_update_interval = 0
 
 Template.youtubeplayer.onRendered(() => {
-  console.log(Template.currentData())
+  Meteor.subscribe('parties.all')
+
   onYouTubeIframeAPIReady = () => {
     player = new YT.Player('video-placeholder', {
         width: 600,
@@ -58,7 +61,6 @@ Template.youtubeplayer.onRendered(() => {
   // This function is called by initialize()
   function updateTimerDisplay(){
       // Update current time text display.
-      console.log(player.getCurrentTime())
       $('#current-time').text(formatTime( player.getCurrentTime() ));
       $('#duration').text(formatTime( player.getDuration() ));
   }
@@ -68,6 +70,13 @@ Template.youtubeplayer.onRendered(() => {
   function updateProgressBar(){
       // Update the value of our progress bar accordingly.
       $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
+  }
+})
+
+Template.youtubeplayer.helpers({
+  getName() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? party.name : ''
   }
 })
 
