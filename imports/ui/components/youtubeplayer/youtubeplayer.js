@@ -20,15 +20,15 @@ Template.youtubeplayer.onRendered(() => {
 
   onYouTubeIframeAPIReady = () => {
     player = new YT.Player('video-placeholder', {
-        width: 600,
-        height: 400,
-        events: {
-            onReady,
-            onStateChange,
-        },
-        playerVars: {
-          controls: 0,
-        }
+      width: 600,
+      height: 400,
+      events: {
+        onReady,
+        onStateChange,
+      },
+      playerVars: {
+        controls: 0,
+      }
     });
   }
 
@@ -40,7 +40,7 @@ Template.youtubeplayer.onRendered(() => {
       var currentSong = Song.findOne(party.currentSong).id
       if (currentSong !== savedSong) {
         savedSong = currentSong
-        if (player) {
+        if (player && player.loadVideoById) {
           player.loadVideoById(currentSong)
         } else {
           const wait = setInterval(() => {
@@ -166,13 +166,17 @@ Template.youtubeplayer.events({
   },
 })
 
+Template.youtubeplayer.onDestroyed(() => {
+  Meteor.call('party.removeBurd', Session.get('username'), Template.currentData().playlistId);
+})
+
 function formatTime(time){
-    time = Math.round(time);
+  time = Math.round(time);
 
-    var minutes = Math.floor(time / 60),
-        seconds = time - minutes * 60;
+  var minutes = Math.floor(time / 60),
+      seconds = time - minutes * 60;
 
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    return minutes + ":" + seconds;
+  return minutes + ":" + seconds;
 }

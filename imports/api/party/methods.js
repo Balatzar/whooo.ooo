@@ -52,5 +52,11 @@ Meteor.methods({
     return Party.update(partyId, {
       $push: { burds: burd }
     })
-  }
+  },
+
+  'party.removeBurd'(burd, partyId) {
+    return Party.update(partyId, {
+      $pop: { burds: burd }
+    })
+  },
 });
