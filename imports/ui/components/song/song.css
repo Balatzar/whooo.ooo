@@ -1,3 +1,29 @@
+.song{
+  clear: both;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+.song p{
+  display: inline-block;
+  width: 70%;
+  float: left;
+  padding:10px;
+
+}
+.song .songImg{
+  width:30%;
+  height:100px;
+  float: left;
+  overflow: hidden;
+}
 .song img {
-  height: 200px
+  height:100%;
+}
+.current .song{
+  color:#fff;
+  background: #46CE69;
+}
+.played .song{
+  opacity: .5;
 }

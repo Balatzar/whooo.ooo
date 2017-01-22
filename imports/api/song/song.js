@@ -42,7 +42,7 @@ class SongCollection extends Mongo.Collection {
       const yt = res.data.items[0].snippet
       console.log(yt)
       ourDoc.name = yt.title
-      ourDoc.image = yt.thumbnails.standard.url
+      ourDoc.image = yt.thumbnails.high ? yt.thumbnails.high.url : yt.thumbnails.default.url
       console.log(ourDoc)
       check(ourDoc, songSchema);
       const result = super.insert(ourDoc, callback);

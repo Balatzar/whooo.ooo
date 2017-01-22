@@ -1,8 +1,16 @@
 <template name="party">
-  {{ > youtubeplayer playlistId=getPlaylistId }}
-  {{ > playlist playlistId=getPlaylistId }}
-  {{ # each burds }}
-    {{ > burd }}
-  {{ /each }}
-  {{ > addsongform playlistId=getPlaylistId }}
+  <div class="container side playlist">
+    {{ > playlist playlistId=getPlaylistId }}
+    <div class="addSong">
+      {{ > addsongform playlistId=getPlaylistId }}
+    </div>
+  </div>
+  <div class="container center player">
+    {{ > youtubeplayer playlistId=getPlaylistId }}
+  </div>
+  <div class="container side last participants">
+    {{ # each burds }}
+      {{ > burd }}
+    {{ /each }}
+  </div>  
 </template>

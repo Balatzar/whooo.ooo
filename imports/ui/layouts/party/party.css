@@ -1,0 +1,33 @@
+.container{
+  float: left;
+  position: absolute;
+  top:15vh;
+  bottom: 0;
+  overflow: scroll;
+  padding: 0;
+}
+.container.center{
+  width:50%;
+  left:25%;
+  padding-top: 20vh;
+}
+.container.side{
+  width:25%;
+}
+.container.side.last{
+  left:75%;
+}
+
+.playlist{
+  background: #fff;
+  padding-top: 100px;
+}
+
+.addSong{
+  position: fixed;
+  top: 15vh;
+  background: #46CE69;
+  left:0;
+  right:75%;
+  height:100px;
+}
