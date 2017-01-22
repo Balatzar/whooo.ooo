@@ -32,19 +32,24 @@ Template.youtubeplayer.onRendered(() => {
     });
   }
 
+  var savedSong
   Tracker.autorun(function() {
     const party = Party.findOne(playlistId)
+    console.log(party)
     if (party) {
       var currentSong = Song.findOne(party.currentSong).id
-      if (player) {
-        player.loadVideoById(currentSong)
-      } else {
-        const wait = setInterval(() => {
-          if (player && player.loadVideoById) {
-            player.loadVideoById(currentSong)
-            clearInterval(wait)
-          }
-        }, 100)
+      if (currentSong !== savedSong) {
+        savedSong = currentSong
+        if (player) {
+          player.loadVideoById(currentSong)
+        } else {
+          const wait = setInterval(() => {
+            if (player && player.cueVideoById) {
+              player.cueVideoById(currentSong)
+              clearInterval(wait)
+            }
+          }, 100)
+        }
       }
     }
   });
@@ -52,7 +57,7 @@ Template.youtubeplayer.onRendered(() => {
   function onStateChange(state) {
     // video has ended
     if (!state.data) {
-      Meteor.call('party.endSong', playlistId, (err, res) => {
+      Meteor.call('party.nextSong', playlistId, (err, res) => {
         if (err) {
           console.warn(err)
         } else {
@@ -74,6 +79,7 @@ Template.youtubeplayer.onRendered(() => {
           updateProgressBar();
       }, 1000);
 
+      $('#volume-input').val(Math.round(player.getVolume()));
 
       $('#progress-bar').on('mouseup touchend', function (e) {
 
@@ -110,8 +116,9 @@ Template.youtubeplayer.helpers({
     return party ? party.name : ''
   },
 
-  getUsername() {
-    return Session.get('username')
+  getCreator() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? party.creator : ''
   },
 
   nbBurds() {
@@ -122,16 +129,41 @@ Template.youtubeplayer.helpers({
   remaining() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
-  }
+  },
 })
 
 Template.youtubeplayer.events({
   "click #play"() {
     player.playVideo();
   },
+
   "click #pause"() {
     player.pauseVideo();
-  }
+  },
+
+  "change #volume-input"() {
+    player.setVolume($('#volume-input').val());
+  },
+
+  "click .previousSong"() {
+    Meteor.call('party.previousSong', Template.currentData().playlistId, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        console.log(res)
+      }
+    })
+  },
+
+  "click .nextSong"() {
+    Meteor.call('party.nextSong', Template.currentData().playlistId, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        console.log(res)
+      }
+    })
+  },
 })
 
 function formatTime(time){
