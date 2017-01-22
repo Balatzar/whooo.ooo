@@ -1,0 +1,15 @@
+.hr{
+	border:none;
+	border-bottom: 1px solid #fff;
+	position: relative;
+	margin: 2em 0;
+}
+.textHr{
+	padding: .5em;
+	color:#fff;
+	position: absolute;
+	top:0;
+	left:50%;
+	transform: translate(-50%,-50%);
+	background: #1E3659;
+}

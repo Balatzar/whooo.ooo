@@ -5,7 +5,11 @@
   	<img src="images/leaf1.svg">
   </div>
   {{ #if getUsername }}
-    <p>Enregistre en tant que {{ getUsername }}</p>
+  	<div class="burbName">
+    {{ #with getUsername}}
+  		{{ >burd }}
+    {{ /with }}
+    </div>
   {{ /if }}
 </div>
 </template>

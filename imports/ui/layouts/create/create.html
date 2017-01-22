@@ -1,14 +1,21 @@
 <template name="create">
-  <button class="create">Creer une Party</button>
-  <br>
-  <br>
-  <br>
-  <br>
-  <form>
-    <label>Rejoindre une Party</label>
-    <br>
-    <input type="text" name="party_id" placeholder="Party ID">
-    <br>
-    <button type="submit">GO</button>
-  </form>
+  <div class="container centered">
+    <h2>Créer une party</h2>
+    <button class="create btn blue">Creer une Party</button>
+    <div class="hr">
+      <span class="textHr">ou bien</span>
+    </div>
+    <h2>Rejoindre une Party</h2>
+    <form>
+      <fieldset class="form-fieldset ui-input __first">
+        <input type="text" id="party_id" name="party_id" tabindex="0" />
+          <label for="username">
+            <span data-text="ID de la party">ID de la party</span>
+          </label>  
+      </fieldset>
+      <div class="form-footer">
+        <input type="submit" class="btn" value="GO !" />
+      </div>
+    </form>
+  </div>
 </template>
