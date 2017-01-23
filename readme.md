@@ -1,0 +1,15 @@
+- comptes
+- notion amis
+- qr code invitation
+- likes sur chansons
+- mode battle
+- changement de skin
+- sons pendant la party
+- pack de sons
+- synchro des rooms
+- ameliorer la notion de owner de la party
+- permettre de ban les gens
+- plus d'option lors de la creation (basic ou options avancees)
+- permettre de limiter l'envoi de chanson
+- necessiter de valider la chanson par X likes avant de la mettre dans la playlist
+- importation/exportation playlist youtube
