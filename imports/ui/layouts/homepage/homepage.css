@@ -12,3 +12,32 @@ h2{
     transform: translate3d(0, 0, 0);
   }
 }
+.dimmer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 99;
+}
+.popup{
+  background: #fff;
+  padding:3em;
+  position: absolute;
+  top:20%;
+  left:20%;
+  right: 20%;
+  bottom: 20%;
+  overflow:scroll;
+  z-index:999;
+}
+.popup img{
+  max-width: 300px;
+  margin:0 auto;
+}
+.popup p{
+  font-size: 1.3em;
+  line-height: 1.5em;
+  color:#1E3659;
+}
