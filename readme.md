@@ -13,3 +13,5 @@
 - permettre de limiter l'envoi de chanson
 - necessiter de valider la chanson par X likes avant de la mettre dans la playlist
 - importation/exportation playlist youtube
+- mettre en place un joli systeme de notification
+- creer des codes pour rejoindre la party plus lisible (slug avec incrementation plus ou moins aleatoire, utiliser aussi dans url)
