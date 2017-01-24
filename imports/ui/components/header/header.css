@@ -1,9 +1,13 @@
+.header{
+	position: relative;
+	height: 15vh;
+}
 h1.partyHead{
 	display: inline-block;
 	text-indent: -99999px;
 	background: url(images/logo.svg) no-repeat center #fff;
 	width:100%;
-	height:15vh;
+	height:100%;
 	border-bottom: 4px #46CE69 solid;
 }
 .leaf1{
@@ -11,19 +15,20 @@ h1.partyHead{
 	width: 30%;
 	max-width:500px;
 	left:50%;
-	top:8%;
+	top:60%;
 	transform: translate(-50%);
 	z-index: -9;
 }
 .burbName{
 	position: absolute;
-	top:30px;
+	top:50%;
 	left:30px;
 	display: inline-block;
 	background: #0A68EF;
 	border-radius: 80px;
 	width:auto;
 	min-width: 170px;
+	transform: translateY(-50%);
 }
 .burbName p{
 	float: left;

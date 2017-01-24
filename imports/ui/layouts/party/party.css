@@ -9,7 +9,7 @@
 .container.center{
   width:50%;
   left:25%;
-  padding-top: 10vh;
+  padding-top: 7%;
 }
 .container.side{
   width:25%;
@@ -30,4 +30,24 @@
   left:0;
   right:75%;
   height:100px;
+}
+.participants{
+  background-color: #0A68EF;
+  padding-top: 1em;
+}
+.participants .burd{
+  clear: both;
+  overflow: hidden;
+}
+.participants .burd img{
+  float: left;
+  margin-left: 5%;
+}
+.participants .burd p{
+  color:#fff;
+  display: inline-block;
+  width:calc(90% - 60px);
+  float: right;
+  font-size: 1.5em;
+  line-height: 60px;
 }

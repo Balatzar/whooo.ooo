@@ -23,17 +23,16 @@ h2{
 }
 .popup{
   background: #fff;
-  padding:3em;
+  padding:5%;
   position: absolute;
-  top:20%;
-  left:20%;
-  right: 20%;
-  bottom: 20%;
+  top:5%;
+  left:15%;
+  right: 15%;
   overflow:scroll;
   z-index:999;
 }
-.popup img{
-  max-width: 300px;
+.popup .burbDanse{
+  max-width: 500px;
   margin:0 auto;
 }
 .popup p{

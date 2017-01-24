@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
 import { Session } from 'meteor/session'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
+import { $ } from 'meteor/jquery'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
@@ -30,6 +31,10 @@ Template.youtubeplayer.onRendered(() => {
         controls: 0,
       }
     });
+
+    var vidHeight = $('#video-placeholder').height();
+    $('#video-hide').height(vidHeight);
+
   }
 
   var savedSong

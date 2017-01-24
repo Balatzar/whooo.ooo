@@ -1,18 +1,30 @@
 <template name="youtubeplayer">
-  <p><h2>{{ getName }}</h2> par {{ getCreator }}</p>
-  <div id="video-placeholder"></div>
-  {{ #if preparing }}
-    <button class="start">Commencer</button>
-  {{ /if }}
-  <button id="play">play</button>
-  <button id="pause">pause</button>
-  volume
-  <input id="volume-input" type="number" max="100" min="0">
-  <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
-  <input type="range" id="progress-bar" value="0">
-  <button class="previousSong">Precedente</button>
-  <button class="nextSong">Suivante</button>
-  <p>{{ remaining }}</p>
-  <p>Il y a {{ nbBurds }} participants</p>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <div class="player">
+    <h2>{{ getName }}</h2>
+    <p> par {{ getCreator }}</p>
+    <div id="video-hide"></div>
+    <div id="video-placeholder"></div>
+    {{ #if preparing }}
+      <div class="waitStart">
+        <h2>{{ getName }}</h2>
+        <p> par {{ getCreator }}</p>
+        <div class="burbDanse">
+          <video loop autoplay="true" poster="/images/logo.svg" src="/videos/burb.mp4">
+          </video>
+        </div>
+        <button class="start btn blue">ON EST READY !</button>
+      </div>
+    {{ /if }}
+    <button id="play">play</button>
+    <button id="pause">pause</button>
+    volume
+    <input id="volume-input" type="number" max="100" min="0">
+    <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
+    <input type="range" id="progress-bar" value="0">
+    <button class="previousSong">Precedente</button>
+    <button class="nextSong">Suivante</button>
+    <p>{{ remaining }}</p>
+    <p>Il y a {{ nbBurds }} participants</p>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </div>
 </template>

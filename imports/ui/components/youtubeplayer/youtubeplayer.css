@@ -1,0 +1,25 @@
+.player h2{
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+.player p{
+  color:#0A68EF;
+  text-align: center;
+}
+.waitStart{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0 ;
+  right: 0;
+  background: #fff;
+  padding: 1em;
+}
+#video-hide{
+  position: absolute;
+  left:0;
+  right:0;
+}
+#video-placeholder{
+  width:100%;
+}
