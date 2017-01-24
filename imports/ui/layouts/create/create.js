@@ -14,6 +14,9 @@ Template.create.events({
   'submit form'(event) {
     event.preventDefault()
     const partyId = event.target.party_id.value
+    if (!partyId) {
+      return
+    }
     FlowRouter.go(`/party/${partyId}`);
     Meteor.call('party.addBurd', Session.get('username'), partyId)
   }

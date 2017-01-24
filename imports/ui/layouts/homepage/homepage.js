@@ -20,7 +20,11 @@ Template.homepage.onRendered(() => {
 Template.homepage.events({
   'submit form'(event) {
     event.preventDefault()
-    Session.set('username', event.target.username.value);
+    const username = event.target.username.value
+    if (!username) {
+      return
+    }
+    Session.set('username', username);
     FlowRouter.go('createPage');
   }
 })
