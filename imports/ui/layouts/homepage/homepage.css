@@ -28,7 +28,7 @@ h2{
   top:5%;
   left:15%;
   right: 15%;
-  overflow:scroll;
+  overflow:auto;
   z-index:999;
 }
 .popup .burbDanse{

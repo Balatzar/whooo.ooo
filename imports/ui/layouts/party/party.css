@@ -3,7 +3,7 @@
   position: absolute;
   top:15vh;
   bottom: 0;
-  overflow: scroll;
+  overflow: auto;
   padding: 0;
 }
 .container.center{
