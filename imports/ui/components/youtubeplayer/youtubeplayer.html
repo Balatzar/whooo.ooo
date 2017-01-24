@@ -22,8 +22,10 @@
     <input id="volume-input" type="number" max="100" min="0">
     <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
     <input type="range" id="progress-bar" value="0">
+    {{ #if isOwner }}
     <button class="previousSong">Precedente</button>
     <button class="nextSong">Suivante</button>
+    {{ /if }}
     <p>{{ remaining }}</p>
     <p>Il y a {{ nbBurds }} participants</p>
     <script src="https://www.youtube.com/iframe_api"></script>

@@ -63,8 +63,9 @@ Template.youtubeplayer.onRendered(() => {
   });
 
   function onStateChange(state) {
+    const party = Party.findOne(Template.currentData().playlistId)
     // video has ended
-    if (!state.data) {
+    if (!state.data && party && party.creator === Session.get('username')) {
       Meteor.call('party.nextSong', playlistId, (err, res) => {
         if (err) {
           console.warn(err)
@@ -122,6 +123,11 @@ Template.youtubeplayer.helpers({
   getName() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? party.name : ''
+  },
+
+  isOwner() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? (party.creator === Session.get('username')) : false
   },
 
   preparing() {
