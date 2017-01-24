@@ -168,6 +168,19 @@ Template.youtubeplayer.events({
     player.setVolume($('#volume-input').val());
   },
 
+  "click #mute-toggle"() {
+    const mute_toggle = $('#mute-toggle');
+
+    if (player.isMuted()) {
+      player.unMute();
+      mute_toggle.text('volume_up');
+    }
+    else {
+      player.mute();
+      mute_toggle.text('volume_off');
+    }
+  },
+
   "click .previousSong"() {
     Meteor.call('party.previousSong', Template.currentData().playlistId, (err, res) => {
       if (err) {
