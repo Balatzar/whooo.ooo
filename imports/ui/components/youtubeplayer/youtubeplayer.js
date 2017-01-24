@@ -42,18 +42,21 @@ Template.youtubeplayer.onRendered(() => {
     const party = Party.findOne(playlistId)
     console.log(party)
     if (party) {
-      var currentSong = Song.findOne(party.currentSong).id
-      if (currentSong !== savedSong) {
-        savedSong = currentSong
-        if (player && player.loadVideoById) {
-          player.loadVideoById(currentSong)
-        } else {
-          const wait = setInterval(() => {
-            if (player && player.cueVideoById) {
-              player.cueVideoById(currentSong)
-              clearInterval(wait)
-            }
-          }, 100)
+      const song = Song.findOne(party.currentSong)
+      if (song) {
+        var currentSong = song.id
+        if (currentSong !== savedSong) {
+          savedSong = currentSong
+          if (player && player.loadVideoById) {
+            player.loadVideoById(currentSong)
+          } else {
+            const wait = setInterval(() => {
+              if (player && player.cueVideoById) {
+                player.cueVideoById(currentSong)
+                clearInterval(wait)
+              }
+            }, 100)
+          }
         }
       }
     }
