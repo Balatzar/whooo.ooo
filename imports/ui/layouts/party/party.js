@@ -18,17 +18,12 @@ Template.party.onRendered(() => {
 })
 
 Template.party.helpers({
+  party() {
+    return Party.findOne(FlowRouter.current().params.id)
+  },
+
   started() {
     const party = Party.findOne(FlowRouter.current().params.id)
     return party ? (party.started || party.creator === Session.get('username')) : false
-  },
-
-  getPlaylistId() {
-    return FlowRouter.current().params.id
-  },
-
-  burds() {
-    const party = Party.findOne(FlowRouter.current().params.id)
-    return party ? party.burds : []
   },
 })

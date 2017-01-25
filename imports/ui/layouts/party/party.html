@@ -1,21 +1,25 @@
 <template name="party">
-  <div class="container side playlist">
-    {{ > playlist playlistId=getPlaylistId }}
-    <div class="addSong">
-      {{ > addsongform playlistId=getPlaylistId }}
+  {{ #with party }}
+    <div class="container side playlist">
+      {{ > playlist playlistId=_id }}
+      <div class="addSong">
+        {{ > addsongform playlistId=_id }}
+      </div>
     </div>
-  </div>
-  {{ #if started }}
-  <div class="container center player">
-    {{ > youtubeplayer playlistId=getPlaylistId }}
-  </div>
-  {{ else }}
-    <h1>PAS ENCORE COMMENCE</h1>
-  {{ /if }}
-  <div class="container side last participants">
-    <h2>Qui est branché</h2>
-    {{ # each burds }}
-      {{ > burd }}
-    {{ /each }}
-  </div>  
+    {{ #if started }}
+    <div class="container center player">
+      {{ > youtubeplayer playlistId=_id }}
+    </div>
+    {{ else }}
+      <h1>PAS ENCORE COMMENCE</h1>
+    {{ /if }}
+    <div class="container side last participants">
+      <h2>Qui est branché</h2>
+      <label>Lien unique a partager</label>
+      <input type="text" value="{{ slug }}">
+      {{ # each burds }}
+        {{ > burd }}
+      {{ /each }}
+    </div>
+  {{ /with }}
 </template>
