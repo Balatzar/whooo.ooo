@@ -22,8 +22,12 @@ Meteor.methods({
 
   'party.addSong'(url, partyId) {
     const song = Song.insert(url)
+    const party = Party.findOne(partyId)
+    if (song === party.currentSong || party.songs.indexOf(song) !== -1) {
+      return 0
+    }
     return Party.update({ _id: partyId }, {
-      $push: {
+      $addToSet: {
         songs: song,
         toPlay: song,
       }
