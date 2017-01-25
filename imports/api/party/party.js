@@ -58,7 +58,7 @@ class PartyCollection extends Mongo.Collection {
     try {
       check(ourDoc, partySchema);
       const result = super.insert(ourDoc, callback);
-      return result;
+      return ourDoc.slug;
     } catch (e) {
       throw e;
     }

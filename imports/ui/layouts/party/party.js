@@ -19,11 +19,11 @@ Template.party.onRendered(() => {
 
 Template.party.helpers({
   party() {
-    return Party.findOne(FlowRouter.current().params.id)
+    return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 
   started() {
-    const party = Party.findOne(FlowRouter.current().params.id)
+    const party = Party.findOne({ slug: FlowRouter.current().params.slug })
     return party ? (party.started || party.creator === Session.get('username')) : false
   },
 })
