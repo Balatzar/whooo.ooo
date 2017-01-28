@@ -59,16 +59,19 @@ Template.youtubeplayer.onRendered(() => {
   });
 
   function onStateChange(state) {
-    const party = Party.findOne(Template.currentData().playlistId)
-    // video has ended
-    if (!state.data && party && party.creator === Session.get('username')) {
-      Meteor.call('party.nextSong', playlistId, (err, res) => {
-        if (err) {
-          console.warn(err)
-        } else {
-          console.log(res)
-        }
-      })
+    try {
+      const party = Party.findOne(Template ? Template.currentData().playlistId : '')
+      // video has ended
+      if (!state.data && party && party.creator === Session.get('username')) {
+        Meteor.call('party.nextSong', playlistId, (err, res) => {
+          if (err) {
+            console.warn(err)
+          } else {
+            console.log(res)
+          }
+        })
+      }
+    } catch (e) {
     }
   }
 
@@ -80,21 +83,21 @@ Template.youtubeplayer.onRendered(() => {
       // Start interval to update elapsed time display and
       // the elapsed part of the progress bar every second.
       time_update_interval = setInterval(function () {
-          updateTimerDisplay();
-          updateProgressBar();
+        updateTimerDisplay();
+        updateProgressBar();
       }, 1000);
 
       $('#volume-input').val(Math.round(player.getVolume()));
 
       $('#progress-bar').on('mouseup touchend', function (e) {
 
-          // Calculate the new time for the video.
-          // new time in seconds = total duration in seconds * ( value of range input / 100 )
-          var newTime = player.getDuration() * (e.target.value / 100);
+        // Calculate the new time for the video.
+        // new time in seconds = total duration in seconds * ( value of range input / 100 )
+        var newTime = player.getDuration() * (e.target.value / 100);
 
-          // Skip video to new time.
-          player.seekTo(newTime);
-          player.playVideo();
+        // Skip video to new time.
+        player.seekTo(newTime);
+        player.playVideo();
 
       });
   }
