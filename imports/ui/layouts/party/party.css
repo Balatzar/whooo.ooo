@@ -35,6 +35,9 @@
   background-color: #0A68EF;
   padding-top: 1em;
 }
+.participants h2{
+  color: #fff;
+}
 .participants .burd{
   clear: both;
   overflow: hidden;
