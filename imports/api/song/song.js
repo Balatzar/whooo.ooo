@@ -37,6 +37,10 @@ class SongCollection extends Mongo.Collection {
     const strVideoId = str.substring(intIndex, intIndex + 11);
     ourDoc.createdAt = new Date();
     ourDoc.id = strVideoId
+    const song = super.findOne({ id: strVideoId })
+    if (song) {
+      return song._id;
+    }
     try {
       const res = HTTP.get(`${youtubeurl}?part=snippet&id=${strVideoId}&key=${Meteor.settings.YOUTUBEAPI}`)
       const yt = res.data.items[0].snippet

@@ -29,7 +29,7 @@ FlowRouter.route('/create/party', {
   },
 });
 
-FlowRouter.route('/party/:id', {
+FlowRouter.route('/party/:slug', {
   name: 'partyPage',
   action() {
     BlazeLayout.render('main', { content: 'party' });
