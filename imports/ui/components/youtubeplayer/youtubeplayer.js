@@ -171,14 +171,13 @@ Template.youtubeplayer.events({
 
   "click #mute-toggle"() {
     const mute_toggle = $('#mute-toggle');
+      mute_toggle.toggleClass('mute');
 
     if (player.isMuted()) {
       player.unMute();
-      mute_toggle.text('volume_up');
     }
     else {
       player.mute();
-      mute_toggle.text('volume_off');
     }
   },
 

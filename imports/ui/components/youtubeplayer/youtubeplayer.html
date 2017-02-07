@@ -28,9 +28,10 @@
                 <button id="pause">pause</button>
                 <button class="nextSong">Suivante</button>
             {{ /if }}
-            <i id="mute-toggle" class="material-icons">volume_on</i>
-            volume
-            <input id="volume-input" type="number" max="100" min="0">
+            <div class="container-volume">
+                <i id="mute-toggle"></i>
+                <input id="volume-input" type="range" name="" max="100" min="0">
+            </div>
             <div class="container-progress">
                 <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
                 <input type="range" id="progress-bar" value="0">
