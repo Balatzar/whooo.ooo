@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
-import { Session } from 'meteor/session'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
 import { $ } from 'meteor/jquery'
 
@@ -62,7 +61,7 @@ Template.youtubeplayer.onRendered(() => {
     try {
       const party = Party.findOne(Template ? Template.currentData().playlistId : '')
       // video has ended
-      if (!state.data && party && party.creator === Session.get('username')) {
+      if (!state.data && party && party.creator === Meteor.user().username) {
         Meteor.call('party.nextSong', playlistId, (err, res) => {
           if (err) {
             console.warn(err)
@@ -125,12 +124,12 @@ Template.youtubeplayer.helpers({
 
   isOwner() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.creator === Session.get('username')) : false
+    return party ? (party.creator === Meteor.user().username) : false
   },
 
   preparing() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (!party.started && party.creator === Session.get('username')) : false
+    return party ? (!party.started && party.creator === Meteor.user().username) : false
   },
 
   getCreator() {
@@ -206,7 +205,7 @@ Template.youtubeplayer.events({
 })
 
 Template.youtubeplayer.onDestroyed(() => {
-  Meteor.call('party.removeBurd', Session.get('username'), Template.currentData().playlistId);
+  Meteor.call('party.removeBurd', Template.currentData().playlistId);
 })
 
 function formatTime(time){
