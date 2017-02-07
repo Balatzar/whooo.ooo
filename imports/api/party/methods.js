@@ -5,19 +5,19 @@ import Party from './party'
 import Song from '../song/song'
 
 Meteor.methods({
-  'party.create'({ creator, name, url }) {
+  'party.create'({ name, url }) {
+    const user = Meteor.users.findOne(this.userId)
     const song = Song.insert(url)
     const party = {
-      creator,
+      creator: user.username,
       name,
       currentSong: song,
       songs: [song],
       toPlay: [],
       played: [],
-      burds: [creator]
+      burds: [user.username]
     }
-    const result = Party.insert(party)
-    return result
+    return Party.insert(party)
   },
 
   'party.addSong'(url, partyId) {
@@ -54,15 +54,17 @@ Meteor.methods({
     })
   },
 
-  'party.addBurd'(burd, partyId) {
+  'party.addBurd'(partyId) {
+    const user = Meteor.users.findOne(this.userId)
     return Party.update(partyId, {
-      $push: { burds: burd }
+      $push: { burds: user.username }
     })
   },
 
-  'party.removeBurd'(burd, partyId) {
+  'party.removeBurd'(partyId) {
+    const user = Meteor.users.findOne(this.userId)
     return Party.update(partyId, {
-      $pop: { burds: burd }
+      $pop: { burds: user.username }
     })
   },
 

@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { FlowRouter } from 'meteor/kadira:flow-router'
-import { Session } from 'meteor/session'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
@@ -24,6 +23,6 @@ Template.party.helpers({
 
   started() {
     const party = Party.findOne({ slug: FlowRouter.current().params.slug })
-    return party ? (party.started || party.creator === Session.get('username')) : false
+    return party ? (party.started || party.creator === Meteor.user().username) : false
   },
 })

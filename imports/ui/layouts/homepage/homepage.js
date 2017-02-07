@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
-import { Session } from 'meteor/session'
 import { FlowRouter } from 'meteor/kadira:flow-router'
 import { $ } from 'meteor/jquery'
 
@@ -8,7 +7,7 @@ import './homepage.html';
 import './homepage.css';
 
 Template.homepage.onRendered(() => {
-  if (Session.get('username')) {
+  if (Meteor.user()) {
     FlowRouter.go('createPage');
   }
   $('.popup button').click(function(){
@@ -24,7 +23,18 @@ Template.homepage.events({
     if (!username) {
       return
     }
-    Session.set('username', username);
-    FlowRouter.go('createPage');
+    Meteor.call('user.unsafeLoggin', username, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        Meteor.loginWithPassword(username, 'insecure', (errLogin, resLogin) => {
+          if (errLogin) {
+            console.warn(errLogin)
+          } else {
+            FlowRouter.go('createPage');
+          }
+        })
+      }
+    })
   }
 })
