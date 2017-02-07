@@ -21,8 +21,8 @@ Template.youtubeplayer.onRendered(() => {
 
   onYouTubeIframeAPIReady = () => {
     player = new YT.Player('video-placeholder', {
-      width: 600,
-      height: 400,
+      width: '100%',
+      height: '100%',
       events: {
         onReady,
         onStateChange,
@@ -110,12 +110,7 @@ Template.youtubeplayer.onRendered(() => {
 
   // This function is called by initialize()
   function updateProgressBar(){
-      // Update the value of our progress bar accordingly.
-      var currentPercentage = (player.getCurrentTime() / player.getDuration()) * 360;
-      console.log(currentPercentage);
-      $('.c100 .bar').attr('style','transform:rotate('+currentPercentage+'deg);');
-      //var currentPercentage = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
-      // $('.player-controls').attr('class','player-controls c100 p'+currentPercentage+'')
+    $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
   }
 })
 
