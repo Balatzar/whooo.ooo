@@ -15,17 +15,25 @@
         <button class="start btn blue">ON EST READY !</button>
       </div>
     {{ /if }}
-    <button id="play">play</button>
-    <button id="pause">pause</button>
-    <i id="mute-toggle" class="material-icons">volume_up</i>
-    volume
-    <input id="volume-input" type="number" max="100" min="0">
-    <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
-    <input type="range" id="progress-bar" value="0">
-    {{ #if isOwner }}
-    <button class="previousSong">Precedente</button>
-    <button class="nextSong">Suivante</button>
-    {{ /if }}
+    <div class="player-controls c100 green">
+        <div class="controls">
+            {{ #if isOwner }}
+                <button id="play">play</button>
+                <button id="pause">pause</button>
+                <button class="previousSong">Precedente</button>
+                <button class="nextSong">Suivante</button>
+            {{ /if }}
+            <i id="mute-toggle" class="material-icons">volume_up</i>
+            volume
+            <input id="volume-input" type="number" max="100" min="0">
+            <p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
+        </div>
+                    <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>  
+
+    </div>
     <p>{{ remaining }}</p>
     <p>Il y a {{ nbBurds }} participants</p>
     <script src="https://www.youtube.com/iframe_api"></script>

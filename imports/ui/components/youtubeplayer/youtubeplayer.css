@@ -15,11 +15,33 @@
   background: #fff;
   padding: 1em;
 }
+#video-placeholder{
+  position: absolute;
+  top:0;
+  bottom:0;
+  height:85vh;
+  z-index: -99;
+  background: url(/images/bg.jpg);
+}
 #video-hide{
   position: absolute;
   left:0;
   right:0;
+  bottom: 0;
+  top:0;
+  z-index: -10;
+  background: rgba(0,0,0,.5)
 }
 #video-placeholder{
   width:100%;
+}
+.player-controls{
+  margin:0 auto;
+  background: #fff;
+}
+.player-controls .controls{
+  font-size: 15px;
+}
+.player-controls .controls button{
+  
 }

@@ -31,10 +31,6 @@ Template.youtubeplayer.onRendered(() => {
         controls: 0,
       }
     });
-
-    var vidHeight = $('#video-placeholder').height();
-    $('#video-hide').height(vidHeight);
-
   }
 
   var savedSong
@@ -115,7 +111,11 @@ Template.youtubeplayer.onRendered(() => {
   // This function is called by initialize()
   function updateProgressBar(){
       // Update the value of our progress bar accordingly.
-      $('#progress-bar').val((player.getCurrentTime() / player.getDuration()) * 100);
+      var currentPercentage = (player.getCurrentTime() / player.getDuration()) * 360;
+      console.log(currentPercentage);
+      $('.c100 .bar').attr('style','transform:rotate('+currentPercentage+'deg);');
+      //var currentPercentage = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
+      // $('.player-controls').attr('class','player-controls c100 p'+currentPercentage+'')
   }
 })
 
