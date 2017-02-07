@@ -1,4 +1,7 @@
 <template name="youtubeplayer">
+        <h2>{{ getName }}</h2>
+        <p> par {{ getCreator }}</p>
+
   <div class="player">
     <div id="video-hide"></div>
     <div class="video-background">
@@ -18,9 +21,6 @@
       </div>
     {{ /if }}
     <div class="player-controls">
-        <h2>{{ getName }}</h2>
-        <p> par {{ getCreator }}</p>
-
         <div class="controls">
             {{ #if isOwner }}
                 <button class="previousSong">Precedente</button>
