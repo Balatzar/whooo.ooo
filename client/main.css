@@ -243,6 +243,6 @@ h3{
 .hidden{
   display: none!important;
 }
-a,button{
+a,button,input{
   outline:none;
 }
