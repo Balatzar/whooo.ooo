@@ -246,3 +246,7 @@ h3{
 a,button,input{
   outline:none;
 }
+
+a:hover,button:hover,input:hover{
+  cursor: pointer
+}
