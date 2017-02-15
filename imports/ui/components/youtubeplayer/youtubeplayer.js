@@ -12,7 +12,7 @@ import './youtubeplayer.html';
 import './youtubeplayer.css';
 
 var time_update_interval = 0
-var player = undefined
+player = undefined
 
 Template.youtubeplayer.onRendered(() => {
   Meteor.subscribe('parties.all')
@@ -24,8 +24,8 @@ Template.youtubeplayer.onRendered(() => {
       width: '100%',
       height: '100%',
       events: {
-        onReady,
         onStateChange,
+        onReady,
       },
       playerVars: {
         controls: 0,
@@ -58,8 +58,9 @@ Template.youtubeplayer.onRendered(() => {
     }
   });
 
+  const party = Party.findOne(playlistId)
+
   function onStateChange(state) {
-    const party = Party.findOne(Template.currentData().playlistId)
     // video has ended
     if (!state.data && party && party.creator === Session.get('username')) {
       Meteor.call('party.nextSong', playlistId, (err, res) => {
