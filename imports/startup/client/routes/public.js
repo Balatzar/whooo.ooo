@@ -33,7 +33,8 @@ FlowRouter.route('/create/party', {
 FlowRouter.route('/party/:slug', {
   name: 'partyPage',
   action() {
-    if(8>7){
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){
       BlazeLayout.render('main', { content: 'partymobile' }); 
     }else{
       BlazeLayout.render('main', { content: 'party' }); 
