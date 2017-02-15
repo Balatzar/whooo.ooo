@@ -1,0 +1,16 @@
+<template name="partymobile">
+  {{ #with party }}
+    <div class="container playlist">
+      {{ > playlist playlistId=_id }}
+      <div class="addSong">
+        {{ > addsongform playlistId=_id }}
+      </div>
+    </div>
+    <div class="container last participants">
+      <h2>Qui est branché <span class="plus"></span></h2>
+      {{ # each burds }}
+        {{ > burd }}
+      {{ /each }}
+    </div>
+  {{ /with }}
+</template>

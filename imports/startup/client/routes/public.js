@@ -7,6 +7,7 @@ import '../../../ui/layouts/homepage/homepage';
 import '../../../ui/layouts/party/party';
 import '../../../ui/layouts/create/create';
 import '../../../ui/layouts/createparty/createparty';
+import '../../../ui/layouts/partymobile/partymobile';
 
 FlowRouter.route('/', {
   name: 'indexPage',
@@ -32,6 +33,10 @@ FlowRouter.route('/create/party', {
 FlowRouter.route('/party/:slug', {
   name: 'partyPage',
   action() {
-    BlazeLayout.render('main', { content: 'party' });
+    if(8>7){
+      BlazeLayout.render('main', { content: 'partymobile' }); 
+    }else{
+      BlazeLayout.render('main', { content: 'party' }); 
+    }
   },
 });
