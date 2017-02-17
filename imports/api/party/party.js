@@ -70,6 +70,6 @@ const Party = new PartyCollection('parties');
 export default Party;
 
 function createUniqueSlug(name) {
-  const slug = `${createSlug(name).toLowerCase()}-${chance.word({ length: 4 })}`
+  const slug = `${createSlug(name).toLowerCase()}${chance.millisecond()}`
   return Party.findOne({ slug }) ? createUniqueSlug(name) : slug
 }
