@@ -13,6 +13,7 @@ import '../../components/youtubeplayer/youtubeplayer.js'
 import '../../components/addsongform/addsongform.js'
 import '../../components/burd/burd.js'
 import '../../components/playlist/playlist.js'
+import '../../components/burd/burd.js'
 
 Template.partymobile.onRendered(() => {
   Meteor.subscribe('parties.all')
@@ -32,6 +33,9 @@ Template.partymobile.events({
 })
 
 Template.partymobile.helpers({
+  getUsername() {
+    return Session.get('username')
+  },
   party() {
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },

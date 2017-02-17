@@ -12,6 +12,17 @@
     </div>
     <div class="container last participants">
       <h2>Qui est branché <span class="ico"></span></h2>
+      <div class="me">
+            {{ #if getUsername }}
+      <div class="burbName">
+      {{ #with getUsername}}
+       {{ >burd }}
+      {{ /with }}
+  <button class="deco">Deconnexion</button>
+      </div>
+    {{ /if }}
+
+      </div>
       {{ # each burds }}
         {{ > burd }}
       {{ /each }}
