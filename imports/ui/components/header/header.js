@@ -11,6 +11,13 @@ import './header.css';
 Template.header.helpers({
   getUsername() {
     return Session.get('username')
+  },
+  isMobile: function () {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){
+      return true 
+    }else{
+      return false 
+    }
   }
 })
 

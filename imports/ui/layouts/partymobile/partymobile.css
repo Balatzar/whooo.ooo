@@ -12,6 +12,7 @@
   overflow: auto;
   padding: 0;
   height:85vh;
+  width:100%;
 }
 .mobile .playlist{
   padding-bottom:10vh;

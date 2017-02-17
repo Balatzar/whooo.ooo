@@ -1,16 +1,18 @@
 <template name="header">
 <div class="header">
   <h1 class="partyHead">WHOOO.OOO</h1>
-  <div class="leaf1">
-  	<img src="/images/leaf1.svg">
-  </div>
-  {{ #if getUsername }}
-  	<div class="burbName">
-    {{ #with getUsername}}
-     {{ >burd }}
-    {{ /with }}
-<button class="deco">Deconnexion</button>
+  {{ #unless isMobile }}
+    <div class="leaf1">
+      <img src="/images/leaf1.svg">
     </div>
-  {{ /if }}
+    {{ #if getUsername }}
+      <div class="burbName">
+      {{ #with getUsername}}
+       {{ >burd }}
+      {{ /with }}
+  <button class="deco">Deconnexion</button>
+      </div>
+    {{ /if }}
+  {{ /unless }}
 </div>
 </template>
