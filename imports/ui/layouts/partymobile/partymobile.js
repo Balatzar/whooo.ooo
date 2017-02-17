@@ -19,17 +19,14 @@ Template.partymobile.onRendered(() => {
   Meteor.subscribe('parties.all')
 })
 
-Template.partymobile.active=function(){
-    return this.active?"active":"";
-}
-
-
-
 Template.partymobile.events({
-  "click .participants":function(event,template){
-      var active=template.data.active;
-      Todos.update(template.data._id,{$set:{active:!active}});
-  }
+  "click .participants"(event) {
+    $(event.target).addClass('active')
+  },
+
+  "click .js-showAddSong"() {
+    $('.addSong').addClass('active')
+  },
 })
 
 Template.partymobile.helpers({

@@ -3,7 +3,7 @@
   <div class="mobile">
     <div class="container playlist">
       {{ > playlist playlistId=_id }}
-      <div class="searchBtn">
+      <div class="searchBtn js-showAddSong">
         <h3>Chercher une chanson <span class="ico"></span></h3>
       </div>
       <div class="addSong fullScreen">
@@ -13,7 +13,7 @@
     <div class="container last participants">
       <h2>Qui est branché <span class="ico"></span></h2>
       <div class="me">
-            {{ #if getUsername }}
+        {{ #if getUsername }}
       <div class="burbName">
       {{ #with getUsername}}
        {{ >burd }}
@@ -21,7 +21,6 @@
   <button class="deco">Deconnexion</button>
       </div>
     {{ /if }}
-
       </div>
       {{ # each burds }}
         {{ > burd }}
