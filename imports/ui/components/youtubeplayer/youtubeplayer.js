@@ -145,6 +145,15 @@ Template.youtubeplayer.helpers({
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
   },
+
+  currentSongName() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    if (party) {
+      const song = Song.findOne(party.currentSong)
+      return song ? song.name : ''
+    }
+    return ''
+  }
 })
 
 Template.youtubeplayer.events({
