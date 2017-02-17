@@ -1,11 +1,11 @@
-.header {
+.mobile .header {
     position: fixed!important;
     left: 0;
     right: 0;
     top: 0;
     z-index: 999999;
 }
-.container{
+.mobile .container{
   float: left;
   position: absolute;
   top:15vh;
@@ -13,10 +13,10 @@
   padding: 0;
   height:85vh;
 }
-.playlist{
+.mobile .playlist{
   padding-bottom:10vh;
 }
-.container.last{
+.mobile .container.last{
   position: fixed;
   top:90vh;
   left:0;
@@ -24,29 +24,55 @@
   transition: all 1s;
 }
 
-.playlist{
+.mobile .playlist{
   background: #fff;
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
-.addSong{
+.mobile .searchBtn{
   position: fixed;
-  top: 15vh;
   background: #46CE69;
-  width:100%;
-  height:100px;
+  top: 15vh;
+  left: 0;
+  right: 0;
+  height:60px;  
 }
-
-.container.last.active{
-  top:15vh;
-}
-.container.participants h2{
+.mobile .searchBtn h3{
   font-size:1.5em;
   line-height: 1.5em;
   text-align: left;
   padding-left: 1em;
 }
-.container.participants span{
+.mobile .searchBtn h3 span{
+  display: inline-block;
+  height: 1.5em;
+  width:1.5em;
+  position: absolute;
+  right:20px;
+  background:url(/images/plus.svg);
+}
+.mobile .addSong{
+  position: fixed;
+  top: -100vh;
+  background: #46CE69;
+  width:100%;
+  height:100vh;
+  transition: all .5s;
+}
+.mobile .addSong.active{
+  top:0;
+}
+
+.mobile .container.last.active{
+  top:15vh;
+}
+.mobile .container.participants h2{
+  font-size:1.5em;
+  line-height: 1.5em;
+  text-align: left;
+  padding-left: 1em;
+}
+.mobile .container.participants span{
   display: inline-block;
   height: 1.5em;
   width:1.5em;
@@ -54,22 +80,22 @@
   right:20px;
   background:url(/images/arrow.svg);
 }
-.participants{
+.mobile .participants{
   background-color: #0A68EF;
   padding-top: 1em;
 }
-.participants h2{
+.mobile .participants h2{
   color: #fff;
 }
-.participants .burd{
+.mobile .participants .burd{
   clear: both;
   overflow: hidden;
 }
-.participants .burd img{
+.mobile .participants .burd img{
   float: left;
   margin-left: 5%;
 }
-.participants .burd p{
+.mobile .participants .burd p{
   color:#fff;
   display: inline-block;
   width:calc(90% - 60px);

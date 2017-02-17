@@ -34,6 +34,7 @@ FlowRouter.route('/party/:slug', {
   name: 'partyPage',
   action() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    console.log(width);
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){
       BlazeLayout.render('main', { content: 'partymobile' }); 
     }else{

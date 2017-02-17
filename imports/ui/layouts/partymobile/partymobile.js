@@ -15,12 +15,20 @@ import '../../components/burd/burd.js'
 import '../../components/playlist/playlist.js'
 
 Template.partymobile.onRendered(() => {
-  $('.header').click(function(){
-    console.log($('.particpants'));
-    $('.particpants').addClass('active');
-  });
   Meteor.subscribe('parties.all')
+})
 
+Template.partymobile.active=function(){
+    return this.active?"active":"";
+}
+
+
+
+Template.partymobile.events({
+  "click .participants":function(event,template){
+      var active=template.data.active;
+      Todos.update(template.data._id,{$set:{active:!active}});
+  }
 })
 
 Template.partymobile.helpers({
