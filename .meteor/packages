@@ -26,3 +26,5 @@ session
 u2622:persistent-session
 http
 accounts-password
+mizzao:user-status
+255kb:meteor-status

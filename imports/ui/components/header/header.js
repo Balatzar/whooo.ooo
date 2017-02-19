@@ -8,8 +8,8 @@ import './header.html';
 import './header.css';
 
 Template.header.helpers({
-  getUsername() {
-    return Meteor.user() ? Meteor.user().username : ''
+  getUser() {
+    return Meteor.user() || false
   },
   isMobile: function () {
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){

@@ -7,7 +7,7 @@ import './homepage.html';
 import './homepage.css';
 
 Template.homepage.onRendered(() => {
-  if (Meteor.user()) {
+  if (Meteor.userId()) {
     FlowRouter.go('createPage');
   }
   $('.popup button').click(function(){
