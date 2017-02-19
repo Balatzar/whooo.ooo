@@ -14,6 +14,7 @@ import '../../components/playlist/playlist.js'
 
 Template.party.onRendered(() => {
   Meteor.subscribe('parties.all')
+  Meteor.subscribe('users.party', FlowRouter.current().params.slug)
 })
 
 Template.party.helpers({
@@ -21,8 +22,7 @@ Template.party.helpers({
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 
-  started() {
-    const party = Party.findOne({ slug: FlowRouter.current().params.slug })
-    return party ? (party.started || party.creator === Meteor.user().username) : false
-  },
+  allBurds() {
+    return Meteor.users.find()
+  }
 })

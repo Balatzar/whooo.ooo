@@ -17,6 +17,5 @@ Template.create.events({
       return
     }
     FlowRouter.go(`/party/${partyId}`);
-    Meteor.call('party.addBurd', partyId)
   }
 })

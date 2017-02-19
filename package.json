@@ -2,13 +2,12 @@
   "name": "meteor-startup",
   "private": true,
   "scripts": {
-    "start": "meteor --settings settings.json"
+    "start": "meteor --settings settings.json --port=4000"
   },
   "dependencies": {
     "babel-runtime": "^6.22.0",
     "bcrypt": "^1.0.2",
     "chance": "^1.0.4",
-    "jsonwebtoken": "^7.2.1",
     "meteor-node-stubs": "~0.2.0",
     "slug": "^0.9.1"
   }

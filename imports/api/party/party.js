@@ -42,17 +42,12 @@ const partySchema = new SimpleSchema({
     type: Date,
     optional: false,
   },
-  started: {
-    type: Boolean,
-    optional: false,
-  }
 });
 
 class PartyCollection extends Mongo.Collection {
   insert(doc, callback) {
     const ourDoc = doc;
     ourDoc.createdAt = new Date();
-    ourDoc.started = false
     ourDoc.slug = createUniqueSlug(doc.name)
     console.log(ourDoc)
     try {
@@ -70,6 +65,6 @@ const Party = new PartyCollection('parties');
 export default Party;
 
 function createUniqueSlug(name) {
-  const slug = `${createSlug(name).toLowerCase()}-${chance.word({ length: 4 })}`
+  const slug = `${createSlug(name).toLowerCase()}${chance.millisecond()}`
   return Party.findOne({ slug }) ? createUniqueSlug(name) : slug
 }

@@ -38,6 +38,7 @@ class SongCollection extends Mongo.Collection {
     ourDoc.createdAt = new Date();
     ourDoc.id = strVideoId
     const song = super.findOne({ id: strVideoId })
+    console.log(song)
     if (song) {
       return song._id;
     }

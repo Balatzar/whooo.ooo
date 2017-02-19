@@ -31,6 +31,8 @@ FlowRouter.route('/create/party', {
 });
 
 FlowRouter.route('/party/:slug', {
+  triggersEnter: [joinParty],
+  triggersExit: [leaveParty],
   name: 'partyPage',
   action() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -42,3 +44,23 @@ FlowRouter.route('/party/:slug', {
     }
   },
 });
+
+function joinParty(route) {
+  Meteor.call('party.addBurd', route.params.slug, (err, res) => {
+    if (err) {
+      console.warn(err)
+    } else {
+      console.log(res)
+    }
+  })
+}
+
+function leaveParty(route) {
+  Meteor.call('party.removeBurd', (err, res) => {
+    if (err) {
+      console.warn(err)
+    } else {
+      console.log(res)
+    }
+  });
+}

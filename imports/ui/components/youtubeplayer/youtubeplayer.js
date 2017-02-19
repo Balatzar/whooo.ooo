@@ -16,6 +16,7 @@ var player = undefined
 Template.youtubeplayer.onRendered(() => {
   Meteor.subscribe('parties.all')
   Meteor.subscribe('songs.all')
+  Meteor.subscribe('users.party', FlowRouter.current().params.slug)
   const playlistId = Template.currentData().playlistId
 
   onYouTubeIframeAPIReady = () => {
@@ -57,20 +58,18 @@ Template.youtubeplayer.onRendered(() => {
     }
   });
 
+  const party = Party.findOne(playlistId)
+
   function onStateChange(state) {
-    try {
-      const party = Party.findOne(Template ? Template.currentData().playlistId : '')
-      // video has ended
-      if (!state.data && party && party.creator === Meteor.user().username) {
-        Meteor.call('party.nextSong', playlistId, (err, res) => {
-          if (err) {
-            console.warn(err)
-          } else {
-            console.log(res)
-          }
-        })
-      }
-    } catch (e) {
+    // video has ended
+    if (!state.data && party && party.creator === Session.get('username')) {
+      Meteor.call('party.nextSong', playlistId, (err, res) => {
+        if (err) {
+          console.warn(err)
+        } else {
+          console.log(res)
+        }
+      })
     }
   }
 
@@ -90,13 +89,13 @@ Template.youtubeplayer.onRendered(() => {
 
       $('#progress-bar').on('mouseup touchend', function (e) {
 
-        // Calculate the new time for the video.
-        // new time in seconds = total duration in seconds * ( value of range input / 100 )
-        var newTime = player.getDuration() * (e.target.value / 100);
+          // Calculate the new time for the video.
+          // new time in seconds = total duration in seconds * ( value of range input / 100 )
+          var newTime = player.getDuration() * (e.target.value / 100);
 
-        // Skip video to new time.
-        player.seekTo(newTime);
-        player.playVideo();
+          // Skip video to new time.
+          player.seekTo(newTime);
+          player.playVideo();
 
       });
   }
@@ -124,12 +123,12 @@ Template.youtubeplayer.helpers({
 
   isOwner() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.creator === Meteor.user().username) : false
+    return party ? (party.creator === Session.get('username')) : false
   },
 
   preparing() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (!party.started && party.creator === Meteor.user().username) : false
+    return party ? (!party.started && party.creator === Session.get('username')) : false
   },
 
   getCreator() {
@@ -138,14 +137,22 @@ Template.youtubeplayer.helpers({
   },
 
   nbBurds() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? party.burds.length : ''
+    return Meteor.users.find().fetch().length
   },
 
   remaining() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
   },
+
+  currentSongName() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    if (party) {
+      const song = Song.findOne(party.currentSong)
+      return song ? song.name : ''
+    }
+    return ''
+  }
 })
 
 Template.youtubeplayer.events({
@@ -202,10 +209,6 @@ Template.youtubeplayer.events({
       }
     })
   },
-})
-
-Template.youtubeplayer.onDestroyed(() => {
-  Meteor.call('party.removeBurd', Template.currentData().playlistId);
 })
 
 function formatTime(time){
