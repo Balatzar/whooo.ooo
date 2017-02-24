@@ -9,17 +9,6 @@
             <div id="video-placeholder"></div>
         </div>
     </div>
-    {{ #if preparing }}
-      <div class="waitStart">
-        <h2>{{ getName }}</h2>
-        <p> par {{ getCreator }}</p>
-        <div class="burbDanse">
-          <video loop autoplay="true" poster="/images/logo.svg" src="/videos/burb.mp4">
-          </video>
-        </div>
-        <button class="start btn blue">ON EST READY !</button>
-      </div>
-    {{ /if }}
     <div class="player-controls">
         <h1>{{ currentSongName }}</h1>
         <div class="controls">
