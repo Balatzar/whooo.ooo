@@ -62,7 +62,7 @@ Template.youtubeplayer.onRendered(() => {
 
   function onStateChange(state) {
     // video has ended
-    if (!state.data && party && party.creator === Session.get('username')) {
+    if (!state.data && party && party.creator === Meteor.user().username) {
       Meteor.call('party.nextSong', playlistId, (err, res) => {
         if (err) {
           console.warn(err)
@@ -123,12 +123,7 @@ Template.youtubeplayer.helpers({
 
   isOwner() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.creator === Session.get('username')) : false
-  },
-
-  preparing() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (!party.started && party.creator === Session.get('username')) : false
+    return party ? (party.creator === Meteor.user().username) : false
   },
 
   getCreator() {
