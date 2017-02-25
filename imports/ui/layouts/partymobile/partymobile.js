@@ -20,12 +20,15 @@ Template.partymobile.onRendered(() => {
 })
 
 Template.partymobile.events({
-  "click .participants"(event) {
-    $(event.target).addClass('active')
+  "click .participants h2"() {
+    $('.participants').toggleClass('active')
   },
 
   "click .js-showAddSong"() {
     $('.addSong').addClass('active')
+  },
+  "click .js-addUrl"(){
+    $('.addSong').removeClass('active')
   },
 })
 
