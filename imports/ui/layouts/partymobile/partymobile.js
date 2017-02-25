@@ -17,17 +17,20 @@ import '../../components/burd/burd.js'
 
 Template.partymobile.onRendered(() => {
   Meteor.subscribe('parties.all')
+  Meteor.subscribe('users.party', FlowRouter.current().params.slug)
 })
 
 Template.partymobile.events({
   "click .participants h2"() {
     $('.participants').toggleClass('active')
   },
-
   "click .js-showAddSong"() {
     $('.addSong').addClass('active')
   },
   "click .js-addUrl"(){
+    $('.addSong').removeClass('active')
+  },
+  "click .closeAddsong"() {
     $('.addSong').removeClass('active')
   },
 })
@@ -43,5 +46,9 @@ Template.partymobile.helpers({
   started() {
     const party = Party.findOne({ slug: FlowRouter.current().params.slug })
     return party ? (party.started || party.creator === Session.get('username')) : false
+  },
+
+  allBurds() {
+    return Meteor.users.find()
   },
 })
