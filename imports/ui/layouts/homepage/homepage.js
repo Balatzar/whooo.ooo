@@ -13,7 +13,14 @@ Template.homepage.onRendered(() => {
   $('.popup button').click(function(){
     $(this).parent().addClass('hidden');
     $('.dimmer').remove();
+    Session.set('seenModal', true)
   });
+})
+
+Template.homepage.helpers({
+  seenModal() {
+    return Session.get('seenModal')
+  }
 })
 
 Template.homepage.events({
@@ -31,7 +38,11 @@ Template.homepage.events({
           if (errLogin) {
             console.warn(errLogin)
           } else {
-            FlowRouter.go('createPage');
+            const redirect = Session.get('redirectUrl')
+            if (redirect) {
+              Session.set('redirectUrl', '')
+            }
+            FlowRouter.go(redirect || 'createPage');
           }
         })
       }

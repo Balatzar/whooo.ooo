@@ -34,13 +34,16 @@ FlowRouter.route('/party/:slug', {
   triggersEnter: [joinParty],
   triggersExit: [leaveParty],
   name: 'partyPage',
-  action() {
+  action(route) {
+    if (!Meteor.userId()) {
+      Session.set('redirectUrl', `/party/${route.slug}`)
+      FlowRouter.go('/')
+    }
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    console.log(width);
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){
-      BlazeLayout.render('main', { content: 'partymobile' }); 
-    }else{
-      BlazeLayout.render('main', { content: 'party' }); 
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900){
+      BlazeLayout.render('main', { content: 'partymobile' });
+    } else {
+      BlazeLayout.render('main', { content: 'party' });
     }
   },
 });

@@ -22,6 +22,14 @@ Template.party.helpers({
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 
+  nbBurds() {
+    return Meteor.users.find().fetch().length
+  },
+
+  burdsPlural() {
+    return Meteor.users.find().fetch().length > 1
+  },
+
   allBurds() {
     return Meteor.users.find()
   }

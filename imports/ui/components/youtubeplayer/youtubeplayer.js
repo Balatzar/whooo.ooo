@@ -131,15 +131,6 @@ Template.youtubeplayer.helpers({
     return party ? party.creator : ''
   },
 
-  nbBurds() {
-    return Meteor.users.find().fetch().length
-  },
-
-  remaining() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
-  },
-
   currentSongName() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {

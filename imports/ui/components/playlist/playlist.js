@@ -28,6 +28,11 @@ Template.playlist.helpers({
     }
   },
 
+  remaining() {
+    const party = Party.findOne(Template.currentData().playlistId)
+    return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
+  },
+
   toPlay() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {

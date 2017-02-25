@@ -18,6 +18,7 @@
       {{ # each allBurds }}
         {{ > burd }}
       {{ /each }}
+      <p>Il y a {{ nbBurds }} participant{{ #if burdsPlural }}s{{ /if }}</p>
     </div>
   {{ /with }}
 </template>
