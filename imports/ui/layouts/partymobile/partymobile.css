@@ -52,6 +52,7 @@
   right:20px;
   background:url(/images/plus.svg);
 }
+
 .mobile .addSong{
   position: fixed;
   top: -100vh;
@@ -59,12 +60,27 @@
   width:100%;
   height:100vh;
   transition: all .5s;
+  padding-top: 40px;
+  z-index:99;
 }
 .mobile .addSong.active{
   top:0;
 }
+.mobile .addSong span{
+  display: inline-block;
+  height: 1.5em;
+  width:1.5em;
+  position: absolute;
+  right:20px;
+  top:20px;
+  background:url(/images/close.svg);
+  transition: all 1s;
+}
+.mobile .addSong.active span{
+  transform: rotate(360deg);
+}
 
-.mobile .container.last.active{
+.mobile .container.participants.active{
   top:15vh;
 }
 .mobile .container.participants h2{
@@ -80,6 +96,10 @@
   position: absolute;
   right:20px;
   background:url(/images/arrow.svg);
+  transition: all .5s;
+}
+.mobile .container.participants.active span{
+  transform: rotate(180deg);
 }
 .mobile .participants{
   background-color: #0A68EF;
