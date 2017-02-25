@@ -161,8 +161,17 @@ Template.youtubeplayer.events({
     })
   },
 
-  "click #play"() {
-    player.playVideo();
+  "click .player-controls .controls button"(event) {
+    const $button = $(event.target)
+    if ($button.hasClass("play")) {
+      player.playVideo();
+      $button.removeClass("play")
+      $button.addClass("pause")
+    } else {
+      player.pauseVideo();
+      $button.removeClass("pause")
+      $button.addClass("play")
+    }
   },
 
   "click #pause"() {

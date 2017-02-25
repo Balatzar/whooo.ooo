@@ -101,15 +101,15 @@
 .player-controls .controls button:hover{
   cursor:pointer;
 }
-.player-controls .controls button#play{
+.player-controls .controls button{
   width:70px;
   height:70px;
-  background: url(/images/player_play.svg) no-repeat center;
 }
-.player-controls .controls button#pause{
-  width:70px;
-  height:70px;
+.player-controls .controls button.pause{
   background: url(/images/player_pause.svg) no-repeat center;
+}
+.player-controls .controls button.play{
+  background: url(/images/player_play.svg) no-repeat center;
 }
 .player-controls .controls button.previousSong{
   width:40px;
