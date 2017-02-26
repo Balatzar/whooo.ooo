@@ -6,22 +6,19 @@
         {{ > addsongform playlistId=_id }}
       </div>
     </div>
-    {{ #if started }}
     <div class="container center player">
       {{ > youtubeplayer playlistId=_id }}
     </div>
-    {{ else }}
-      <h1>PAS ENCORE COMMENCE</h1>
-    {{ /if }}
     <div class="container side last participants">
       <div class="share-link">
         <p>Lien unique a partager</p>
         <input type="text" value="{{ slug }}">
       </div>
       <h2>Qui est branché</h2>
-      {{ # each burds }}
+      {{ # each allBurds }}
         {{ > burd }}
       {{ /each }}
+      <p>Il y a {{ nbBurds }} participant{{ #if burdsPlural }}s{{ /if }}</p>
     </div>
   {{ /with }}
 </template>

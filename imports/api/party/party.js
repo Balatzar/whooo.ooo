@@ -42,17 +42,12 @@ const partySchema = new SimpleSchema({
     type: Date,
     optional: false,
   },
-  started: {
-    type: Boolean,
-    optional: false,
-  }
 });
 
 class PartyCollection extends Mongo.Collection {
   insert(doc, callback) {
     const ourDoc = doc;
     ourDoc.createdAt = new Date();
-    ourDoc.started = false
     ourDoc.slug = createUniqueSlug(doc.name)
     console.log(ourDoc)
     try {

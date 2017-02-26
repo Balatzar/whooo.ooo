@@ -9,24 +9,12 @@
             <div id="video-placeholder"></div>
         </div>
     </div>
-    {{ #if preparing }}
-      <div class="waitStart">
-        <h2>{{ getName }}</h2>
-        <p> par {{ getCreator }}</p>
-        <div class="burbDanse">
-          <video loop autoplay="true" poster="/images/logo.svg" src="/videos/burb.mp4">
-          </video>
-        </div>
-        <button class="start btn blue">ON EST READY !</button>
-      </div>
-    {{ /if }}
     <div class="player-controls">
         <h1>{{ currentSongName }}</h1>
         <div class="controls">
             {{ #if isOwner }}
                 <button class="previousSong">Precedente</button>
-                <button id="play">play</button>
-                <button id="pause">pause</button>
+                <button class="play">play</button>
                 <button class="nextSong">Suivante</button>
             {{ /if }}
             <div class="container-volume">
@@ -39,8 +27,6 @@
             </div>
         </div>
     </div>
-    <p>{{ remaining }}</p>
-    <p>Il y a {{ nbBurds }} participants</p>
     <script src="https://www.youtube.com/iframe_api"></script>
   </div>
 </template>

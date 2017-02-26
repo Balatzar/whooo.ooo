@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { FlowRouter } from 'meteor/kadira:flow-router'
-import { Session } from 'meteor/session'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
@@ -15,6 +14,7 @@ import '../../components/playlist/playlist.js'
 
 Template.party.onRendered(() => {
   Meteor.subscribe('parties.all')
+  Meteor.subscribe('users.party', FlowRouter.current().params.slug)
 })
 
 Template.party.helpers({
@@ -22,8 +22,15 @@ Template.party.helpers({
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 
-  started() {
-    const party = Party.findOne({ slug: FlowRouter.current().params.slug })
-    return party ? (party.started || party.creator === Session.get('username')) : false
+  nbBurds() {
+    return Meteor.users.find().fetch().length
   },
+
+  burdsPlural() {
+    return Meteor.users.find().fetch().length > 1
+  },
+
+  allBurds() {
+    return Meteor.users.find()
+  }
 })

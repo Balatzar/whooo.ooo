@@ -5,22 +5,24 @@ import Party from './party'
 import Song from '../song/song'
 
 Meteor.methods({
-  'party.create'({ creator, name, url }) {
+  'party.create'({ name, url }) {
+    console.log('party.create')
+    const user = Meteor.users.findOne(this.userId)
     const song = Song.insert(url)
     const party = {
-      creator,
+      creator: user.username,
       name,
       currentSong: song,
       songs: [song],
       toPlay: [],
       played: [],
-      burds: [creator]
+      burds: [user.username]
     }
-    const result = Party.insert(party)
-    return result
+    return Party.insert(party)
   },
 
   'party.addSong'(url, partyId) {
+    console.log('party.addSong')
     const song = Song.insert(url)
     const party = Party.findOne(partyId)
     if (song === party.currentSong || party.songs.indexOf(song) !== -1) {
@@ -35,6 +37,7 @@ Meteor.methods({
   },
 
   'party.nextSong'(partyId) {
+    console.log('party.nextSong')
     const party = Party.findOne(partyId)
     if (!party.toPlay.length) return
     return Party.update(partyId, {
@@ -45,6 +48,7 @@ Meteor.methods({
   },
 
   'party.previousSong'(partyId) {
+    console.log('party.previousSong')
     const party = Party.findOne(partyId)
     if (!party.played.length) return
     return Party.update(partyId, {
@@ -54,21 +58,33 @@ Meteor.methods({
     })
   },
 
-  'party.addBurd'(burd, partyId) {
-    return Party.update(partyId, {
-      $push: { burds: burd }
+  'party.addBurd'(slug) {
+    console.log('party.addBurd')
+    const user = Meteor.users.findOne(this.userId)
+    const profile = user.profile
+    profile.currentParty = slug
+    Meteor.users.update(this.userId, {
+      $set: { profile }
+    })
+    return Party.update({ slug }, {
+      $addToSet: { burds: user.username }
     })
   },
 
-  'party.removeBurd'(burd, partyId) {
-    return Party.update(partyId, {
-      $pop: { burds: burd }
+  'party.removeBurd'() {
+    console.log('party.removeBurd')
+    if (!this.userId) {
+      return 'disconnected'
+    }
+    const user = Meteor.users.findOne(this.userId)
+    console.log(user)
+    const profile = user.profile
+    Party.update({ slug: profile.currentParty }, {
+      $pop: { burds: user.username }
+    })
+    profile.currentParty = ''
+    return Meteor.users.update(this.userId, {
+      $set: { profile }
     })
   },
-
-  'party.start'(partyId) {
-    return Party.update(partyId, {
-      $set: { started: true }
-    })
-  }
 });

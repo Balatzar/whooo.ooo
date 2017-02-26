@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
-import { Session } from 'meteor/session'
 import { YT } from 'meteor/adrianliaw:youtube-iframe-api'
 import { $ } from 'meteor/jquery'
 
@@ -12,11 +11,12 @@ import './youtubeplayer.html';
 import './youtubeplayer.css';
 
 var time_update_interval = 0
-player = undefined
+var player = undefined
 
 Template.youtubeplayer.onRendered(() => {
   Meteor.subscribe('parties.all')
   Meteor.subscribe('songs.all')
+  Meteor.subscribe('users.party', FlowRouter.current().params.slug)
   const playlistId = Template.currentData().playlistId
 
   onYouTubeIframeAPIReady = () => {
@@ -24,8 +24,8 @@ Template.youtubeplayer.onRendered(() => {
       width: '100%',
       height: '100%',
       events: {
-        onStateChange,
         onReady,
+        onStateChange,
       },
       playerVars: {
         controls: 0,
@@ -62,7 +62,7 @@ Template.youtubeplayer.onRendered(() => {
 
   function onStateChange(state) {
     // video has ended
-    if (!state.data && party && party.creator === Session.get('username')) {
+    if (!state.data && party && party.creator === Meteor.user().username) {
       Meteor.call('party.nextSong', playlistId, (err, res) => {
         if (err) {
           console.warn(err)
@@ -81,8 +81,8 @@ Template.youtubeplayer.onRendered(() => {
       // Start interval to update elapsed time display and
       // the elapsed part of the progress bar every second.
       time_update_interval = setInterval(function () {
-          updateTimerDisplay();
-          updateProgressBar();
+        updateTimerDisplay();
+        updateProgressBar();
       }, 1000);
 
       $('#volume-input').val(Math.round(player.getVolume()));
@@ -123,27 +123,12 @@ Template.youtubeplayer.helpers({
 
   isOwner() {
     const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.creator === Session.get('username')) : false
-  },
-
-  preparing() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (!party.started && party.creator === Session.get('username')) : false
+    return party ? (party.creator === Meteor.user().username) : false
   },
 
   getCreator() {
     const party = Party.findOne(Template.currentData().playlistId)
     return party ? party.creator : ''
-  },
-
-  nbBurds() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? party.burds.length : ''
-  },
-
-  remaining() {
-    const party = Party.findOne(Template.currentData().playlistId)
-    return party ? (party.toPlay.length ? `Il reste ${party.toPlay.length} chansons` : "Il n'y a aucune chanson restante apres celle-ci") : ''
   },
 
   currentSongName() {
@@ -167,8 +152,17 @@ Template.youtubeplayer.events({
     })
   },
 
-  "click #play"() {
-    player.playVideo();
+  "click .player-controls .controls button"(event) {
+    const $button = $(event.target)
+    if ($button.hasClass("play")) {
+      player.playVideo();
+      $button.removeClass("play")
+      $button.addClass("pause")
+    } else {
+      player.pauseVideo();
+      $button.removeClass("pause")
+      $button.addClass("play")
+    }
   },
 
   "click #pause"() {
@@ -210,10 +204,6 @@ Template.youtubeplayer.events({
       }
     })
   },
-})
-
-Template.youtubeplayer.onDestroyed(() => {
-  Meteor.call('party.removeBurd', Session.get('username'), Template.currentData().playlistId);
 })
 
 function formatTime(time){

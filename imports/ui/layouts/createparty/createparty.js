@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
-import { Session } from 'meteor/session'
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { isYtUrl } from '../../../api/song/song'
 
@@ -16,7 +15,6 @@ Template.createparty.events({
       return
     }
     Meteor.call('party.create', {
-      creator: Session.get('username'),
       name,
       url,
     }, (err, res) => {
