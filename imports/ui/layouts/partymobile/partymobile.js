@@ -27,9 +27,6 @@ Template.partymobile.events({
   "click .js-showAddSong"() {
     $('.addSong').addClass('active')
   },
-  "click .js-addUrl"(){
-    $('.addSong').removeClass('active')
-  },
   "click .closeAddsong"() {
     $('.addSong').removeClass('active')
   },

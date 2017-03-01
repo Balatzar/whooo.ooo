@@ -1,7 +1,15 @@
 <template name="addsongform">
   <h3>Ajouter une chanson</h3>
-  <form class="ajoutSong">
+  <form class="ajoutSong js-ajoutSong">
     <input class="inputUrl" type="text" name="url">
     <button class="ajoutUrl js-addUrl" type="submit">+</button>
   </form>
+  <div class="js-displaySearch">
+    {{ #each searchResults }}
+      <div class="js-searchResult">
+        <p>{{ snippet.title }}</p>
+        <img src="{{ snippet.thumbnails.default.url }}">
+      </div>
+    {{ /each }}
+  </div>
 </template>
