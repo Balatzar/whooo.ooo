@@ -29,34 +29,7 @@ const songSchema = new SimpleSchema({
   },
 });
 
-class SongCollection extends Mongo.Collection {
-  insert(url , callback) {
-    const ourDoc = {};
-    const str = url;
-    const intIndex = str.indexOf("v=") !== -1 ? str.indexOf("v=") + 2 : str.indexOf("be/") + 3;
-    const strVideoId = str.substring(intIndex, intIndex + 11);
-    ourDoc.createdAt = new Date();
-    ourDoc.id = strVideoId
-    const song = super.findOne({ id: strVideoId })
-    console.log(song)
-    if (song) {
-      return song._id;
-    }
-    try {
-      const res = HTTP.get(`${youtubeurl}?part=snippet&id=${strVideoId}&key=${Meteor.settings.YOUTUBEAPI}`)
-      const yt = res.data.items[0].snippet
-      console.log(yt)
-      ourDoc.name = yt.title
-      ourDoc.image = yt.thumbnails.high ? yt.thumbnails.high.url : yt.thumbnails.default.url
-      console.log(ourDoc)
-      check(ourDoc, songSchema);
-      const result = super.insert(ourDoc, callback);
-      return result;
-    } catch (e) {
-      throw e;
-    }
-  }
-}
+class SongCollection extends Mongo.Collection {}
 
 const Song = new SongCollection('songs');
 

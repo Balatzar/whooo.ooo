@@ -6,7 +6,7 @@ import { $ } from 'meteor/jquery'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
-
+song = Song
 import './partymobile.css'
 import './partymobile.html'
 import '../../components/youtubeplayer/youtubeplayer.js'
@@ -37,6 +37,7 @@ Template.partymobile.helpers({
     return Session.get('username')
   },
   party() {
+    console.log(Party.findOne({ slug: FlowRouter.current().params.slug }))
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 

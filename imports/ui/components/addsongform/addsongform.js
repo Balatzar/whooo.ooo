@@ -17,18 +17,19 @@ Template.addsongform.events({
         Session.set('searchResults', res)
       }
     })
-
-    // Meteor.call('party.addSong', event.target.url.value, Template.currentData().playlistId, (err, res) => {
-    //   if (err) {
-    //     console.warn(err)
-    //   } else {
-    //     event.target.url.value = ''
-    //   }
-    // })
   },
 
   'click .js-searchResult'() {
     console.log(this)
+    Meteor.call('party.addSong', this.snippet, Template.currentData().playlistId, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        $('.inputUrl').val('')
+        Session.set('searchResults', null)
+        $('.addSong').removeClass('active')
+      }
+    })
   }
 })
 
