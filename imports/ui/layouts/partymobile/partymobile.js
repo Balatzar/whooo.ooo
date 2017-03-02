@@ -6,11 +6,11 @@ import { $ } from 'meteor/jquery'
 
 import Party from '../../../api/party/party'
 import Song from '../../../api/song/song'
-song = Song
+
 import './partymobile.css'
 import './partymobile.html'
 import '../../components/youtubeplayer/youtubeplayer.js'
-import '../../components/addsongform/addsongform.js'
+import '../../components/searchSong/searchSong.js'
 import '../../components/burd/burd.js'
 import '../../components/playlist/playlist.js'
 import '../../components/burd/burd.js'

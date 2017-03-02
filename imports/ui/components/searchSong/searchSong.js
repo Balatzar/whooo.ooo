@@ -2,10 +2,10 @@ import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Session } from 'meteor/session'
 
-import './addsongform.css'
-import './addsongform.html'
+import './searchSong.css'
+import './searchSong.html'
 
-Template.addsongform.events({
+Template.searchSong.events({
   'submit form'(event) {
     event.preventDefault()
 
@@ -23,7 +23,7 @@ Template.addsongform.events({
 
   'click .js-searchResult'() {
     console.log(this)
-    Meteor.call('party.addSong', this.snippet, Template.currentData().playlistId, (err, res) => {
+    Meteor.call('party.addSongFromSearch', this, Template.currentData().playlistId, (err, res) => {
       if (err) {
         console.warn(err)
       } else {
@@ -67,7 +67,7 @@ Template.addsongform.events({
   },
 })
 
-Template.addsongform.helpers({
+Template.searchSong.helpers({
   searchResults() {
     return Session.get('searchResults')
   },

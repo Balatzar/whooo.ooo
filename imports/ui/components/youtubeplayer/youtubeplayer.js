@@ -41,6 +41,7 @@ Template.youtubeplayer.onRendered(() => {
       const song = Song.findOne(party.currentSong)
       if (song) {
         var currentSong = song.id
+        console.log(song)
         if (currentSong !== savedSong) {
           savedSong = currentSong
           if (player && player.loadVideoById) {

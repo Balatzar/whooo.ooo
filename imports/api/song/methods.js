@@ -24,7 +24,7 @@ Meteor.methods({
       const url = `${youtubeurl}/videos?part=snippet&id=${id}&key=${Meteor.settings.YOUTUBEAPI}`
       console.log(url)
       const res = HTTP.get(url)
-      const yt = res.data.items[0].snippet
+      const yt = Object.assign({}, res.data.items[0].snippet, { id: res.data.items[0].id })
       console.log(yt)
       const result = Song.insert(yt);
       return result;
