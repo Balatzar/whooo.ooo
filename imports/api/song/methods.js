@@ -36,10 +36,34 @@ Meteor.methods({
   'song.search'(query) {
     try {
       const res = HTTP.get(`${youtubeurl}/search?part=snippet&q=${query}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`)
-      const results = res.data.items
+      const results = res.data
       return results;
     } catch (e) {
       throw e;
     }
-  }
+  },
+
+  'song.searchNext'(query, nextPageToken) {
+    const url = `${youtubeurl}/search?part=snippet&q=${query}&pageToken=${nextPageToken}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`
+    console.log(url)
+    try {
+      const res = HTTP.get(url)
+      const results = res.data
+      return results;
+    } catch (e) {
+      throw e;
+    }
+  },
+
+  'song.searchPrevious'(query, prevPageToken) {
+    const url = `${youtubeurl}/search?part=snippet&q=${query}&pageToken=${prevPageToken}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`
+    console.log(url)
+    try {
+      const res = HTTP.get(url)
+      const results = res.data
+      return results;
+    } catch (e) {
+      throw e;
+    }
+  },
 });

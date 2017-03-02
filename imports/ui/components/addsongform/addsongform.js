@@ -14,7 +14,9 @@ Template.addsongform.events({
         console.warn(err)
       } else {
         console.log(res)
-        Session.set('searchResults', res)
+        Session.set('searchResults', res.items)
+        Session.set('nextPageToken', res.nextPageToken)
+        Session.set('prevPageToken', res.prevPageToken)
       }
     })
   },
@@ -27,14 +29,54 @@ Template.addsongform.events({
       } else {
         $('.inputUrl').val('')
         Session.set('searchResults', null)
+        Session.set('nextPageToken', null)
+        Session.set('prevPageToken', null)
         $('.addSong').removeClass('active')
       }
     })
-  }
+  },
+
+  'click .js-nextResults'() {
+    const query = $('.inputUrl').val()
+    const nextPageToken = Session.get('nextPageToken')
+     Meteor.call('song.searchNext', query, nextPageToken, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        console.log(res)
+        Session.set('searchResults', res.items)
+        Session.set('nextPageToken', res.nextPageToken)
+        Session.set('prevPageToken', res.prevPageToken)
+      }
+    })
+  },
+
+  'click .js-previousResults'() {
+    const query = $('.inputUrl').val()
+    const prevPageToken = Session.get('prevPageToken')
+     Meteor.call('song.searchNext', query, prevPageToken, (err, res) => {
+      if (err) {
+        console.warn(err)
+      } else {
+        console.log(res)
+        Session.set('searchResults', res.items)
+        Session.set('nextPageToken', res.nextPageToken)
+        Session.set('prevPageToken', res.prevPageToken)
+      }
+    })
+  },
 })
 
 Template.addsongform.helpers({
   searchResults() {
     return Session.get('searchResults')
+  },
+
+  nextPageToken() {
+    return Session.get('nextPageToken')
+  },
+
+  prevPageToken() {
+    return Session.get('prevPageToken')
   },
 })
