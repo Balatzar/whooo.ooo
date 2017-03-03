@@ -12,6 +12,7 @@ Meteor.methods({
   },
 
   'song.createFromUrl'(url) {
+    console.log('song.createFromUrl')
     const str = url;
     const intIndex = str.indexOf("v=") !== -1 ? str.indexOf("v=") + 2 : str.indexOf("be/") + 3;
     const id = str.substring(intIndex, intIndex + 11);
@@ -34,6 +35,7 @@ Meteor.methods({
   },
 
   'song.search'(query) {
+    console.log('song.search')
     try {
       const res = HTTP.get(`${youtubeurl}/search?part=snippet&q=${query}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`)
       const results = res.data
@@ -44,6 +46,7 @@ Meteor.methods({
   },
 
   'song.searchNext'(query, nextPageToken) {
+    console.log('song.searchNext')
     const url = `${youtubeurl}/search?part=snippet&q=${query}&pageToken=${nextPageToken}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`
     console.log(url)
     try {
@@ -56,6 +59,7 @@ Meteor.methods({
   },
 
   'song.searchPrevious'(query, prevPageToken) {
+    console.log('song.searchPrevious')
     const url = `${youtubeurl}/search?part=snippet&q=${query}&pageToken=${prevPageToken}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`
     console.log(url)
     try {

@@ -37,7 +37,7 @@ Meteor.methods({
   },
 
   'party.addSongFromUrl'(url, partyId) {
-    console.log('party.addSong')
+    console.log('party.addSongFromUrl')
     const songId = Meteor.call('song.createFromUrl', url)
     const party = Party.findOne(partyId)
     if (songId === party.currentSong || party.songs.indexOf(songId) !== -1) {
