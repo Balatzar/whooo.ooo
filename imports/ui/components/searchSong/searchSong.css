@@ -1,3 +1,16 @@
+.searchMobileTop{
+  height:15vh;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+}
+.searchResults{
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  overflow: scroll;
+}
 .playlist h3{
   text-align: center;
   margin:.5em 0;
@@ -15,6 +28,8 @@
   display: inline-block;
   width:80%;
   padding-left:10px;
+  line-height:1.5em;
+  font-size: 1.2em;
 }
 .ajoutUrl{
   border-radius: 0 30px 30px 0;
@@ -26,6 +41,38 @@
   top:-1px;
   color:#46CE69;
   display: inline-block;
-  width:10%;
+  width:18%;
   font-weight:bolder;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+.searchResult{
+  max-height: 100vh;
+  overflow: scroll;
+}
+.searchResult .song{
+  position: relative;
+}
+.searchResult .song p{
+  padding-right:3em;
+}
+.nextResult,.prevResult{
+  height:10vh;
+  font-size: 1em;
+  color:#fff;
+  padding:1em;
+}
+.nextResult{
+  float: right;
+}
+.mobile .addSong .addThis .ico{
+    display: inline-block;
+  height:30px;
+  width:30px;
+  position: absolute;
+  top: 60px;
+  right:10px;
+  background:url(/images/plus.svg);
+  background-color:#46CE69;
+  border-radius: 100%;
 }

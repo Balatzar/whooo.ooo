@@ -1,21 +1,26 @@
 <template name="searchSong">
-  <h3>Ajouter une chanson</h3>
-  <form class="ajoutSong js-ajoutSong">
-    <input class="inputUrl js-inputUrl" type="text" name="url">
-    <button class="ajoutUrl js-addUrl" type="submit">+</button>
-  </form>
-  {{ #if prevPageToken }}
-    <button class="js-previousResults">precedent</button>
-  {{ /if }}
-  {{ #if nextPageToken }}
-    <button class="js-nextResults">suivant</button>
-  {{ /if }}
-  <div class="js-displaySearch">
+  <div class="searchMobileTop">
+    <h3>Ajouter une chanson</h3>
+    <form class="ajoutSong js-ajoutSong">
+      <input class="inputUrl js-inputUrl" type="text" name="url">
+      <button class="ajoutUrl js-addUrl" type="submit">+</button>
+    </form>
+  </div>
+  <div class="js-displaySearch searchResults">
     {{ #each searchResults }}
-      <div class="js-searchResult">
-        <p>{{ snippet.title }}</p>
-        <img src="{{ snippet.thumbnails.default.url }}">
+      <div class="js-searchResult song">
+       <div class="songImg"> <img src="{{ snippet.thumbnails.default.url }}"> </div>
+      <p>{{ snippet.title }}</p>
+      <div class="addThis">
+        <span class="ico"></span>
+      </div>
       </div>
     {{ /each }}
+    {{ #if prevPageToken }}
+      <button class="js-previousResults prevResult">precedent</button>
+    {{ /if }}
+    {{ #if nextPageToken }}
+      <button class="js-nextResults nextResult">suivant</button>
+    {{ /if }}
   </div>
 </template>
