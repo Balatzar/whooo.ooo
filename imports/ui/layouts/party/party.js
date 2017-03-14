@@ -8,7 +8,7 @@ import Song from '../../../api/song/song'
 import './party.css'
 import './party.html'
 import '../../components/youtubeplayer/youtubeplayer.js'
-import '../../components/addsongform/addsongform.js'
+import '../../components/addSong/addSong.js'
 import '../../components/burd/burd.js'
 import '../../components/playlist/playlist.js'
 

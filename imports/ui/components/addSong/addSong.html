@@ -1,0 +1,21 @@
+<template name="addSong">
+  <h3>Ajouter une chanson</h3>
+  <form class="ajoutSong js-addSong">
+    <input class="inputUrl js-inputUrl" type="text" name="url">
+    <button class="ajoutUrl js-addUrl" type="submit">+</button>
+  </form>
+  {{ #if prevPageToken }}
+    <button class="js-previousResults">precedent</button>
+  {{ /if }}
+  {{ #if nextPageToken }}
+    <button class="js-nextResults">suivant</button>
+  {{ /if }}
+  <div class="js-displaySearch">
+    {{ #each searchResults }}
+      <div class="js-searchResult">
+        <p>{{ snippet.title }}</p>
+        <img src="{{ snippet.thumbnails.default.url }}">
+      </div>
+    {{ /each }}
+  </div>
+</template>

@@ -4,11 +4,11 @@
     <div class="container playlist">
       {{ > playlist playlistId=_id }}
       <div class="searchBtn js-showAddSong">
-        <h3>Chercher une chanson <span class="ico"></span></h3>
+        <h3>Ajouter une chanson <span class="ico"></span></h3>
       </div>
       <div class="addSong fullScreen">
         <span class="closeAddsong"></span>
-        {{ > addsongform playlistId=_id }}
+        {{ > searchSong playlistId=_id }}
       </div>
     </div>
     <div class="container last participants">

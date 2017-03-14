@@ -10,7 +10,7 @@ import Song from '../../../api/song/song'
 import './partymobile.css'
 import './partymobile.html'
 import '../../components/youtubeplayer/youtubeplayer.js'
-import '../../components/addsongform/addsongform.js'
+import '../../components/searchSong/searchSong.js'
 import '../../components/burd/burd.js'
 import '../../components/playlist/playlist.js'
 import '../../components/burd/burd.js'
@@ -27,9 +27,6 @@ Template.partymobile.events({
   "click .js-showAddSong"() {
     $('.addSong').addClass('active')
   },
-  "click .js-addUrl"(){
-    $('.addSong').removeClass('active')
-  },
   "click .closeAddsong"() {
     $('.addSong').removeClass('active')
   },
@@ -40,6 +37,7 @@ Template.partymobile.helpers({
     return Session.get('username')
   },
   party() {
+    console.log(Party.findOne({ slug: FlowRouter.current().params.slug }))
     return Party.findOne({ slug: FlowRouter.current().params.slug })
   },
 
