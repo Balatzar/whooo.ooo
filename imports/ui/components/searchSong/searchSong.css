@@ -1,14 +1,16 @@
 .searchMobileTop{
-  height:15vh;
+  height:100px;
   position: absolute;
-  top: 40px;
+  top: 50px;
   left: 0;
   right: 0;
 }
 .searchResults{
-  height: 75vh;
   position: absolute;
   bottom: 0;
+  left:0;
+  right: 0;
+  top:150px;
   overflow: scroll;
 }
 .playlist h3{
@@ -61,6 +63,8 @@
   font-size: 1em;
   color:#fff;
   padding:1em;
+  background-color: transparent;
+  border:none;
 }
 .nextResult{
   float: right;
