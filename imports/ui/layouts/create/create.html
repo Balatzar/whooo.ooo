@@ -1,5 +1,8 @@
 <template name="create">
   <div class="container centered">
+    {{ # if getError }}
+      {{ > error text=getError }}
+    {{ / if }}
     <h2>Créer une party</h2>
     <button class="create btn blue">Creer une Party</button>
     <div class="hr">

@@ -90,6 +90,10 @@ Template.youtubeplayer.onRendered(() => {
 
       $('#progress-bar').on('mouseup touchend', function (e) {
 
+          if (party.creator !== Meteor.user().username) {
+            return
+          }
+
           // Calculate the new time for the video.
           // new time in seconds = total duration in seconds * ( value of range input / 100 )
           var newTime = player.getDuration() * (e.target.value / 100);

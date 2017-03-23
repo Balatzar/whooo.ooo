@@ -18,6 +18,10 @@ import '../../components/burd/burd.js'
 Template.partymobile.onRendered(() => {
   Meteor.subscribe('parties.all')
   Meteor.subscribe('users.party', FlowRouter.current().params.slug)
+  if (!Party.findOne({ slug: FlowRouter.current().params.slug })) {
+    const error = encodeURIComponent("Cette fête n'existe pas ! Oh non !")
+    FlowRouter.go(`/create?error=${error}`);
+  }
 })
 
 Template.partymobile.events({
