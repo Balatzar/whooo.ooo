@@ -12,7 +12,7 @@ Template.create.events({
 
   'submit form'(event) {
     event.preventDefault()
-    const partyId = event.target.party_id.value
+    const partyId = event.target.party_id.value.toLowerCase()
     if (!partyId) {
       return
     }
