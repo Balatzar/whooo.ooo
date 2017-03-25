@@ -16,12 +16,13 @@ import '../../components/playlist/playlist.js'
 import '../../components/burd/burd.js'
 
 Template.partymobile.onRendered(() => {
-  Meteor.subscribe('parties.all')
+   Meteor.subscribe('parties.all', () => {
+    if (!Party.findOne({ slug: FlowRouter.current().params.slug })) {
+      const error = encodeURIComponent("Cette fête n'existe pas ! Oh non !")
+      FlowRouter.go(`/create?error=${error}`);
+    }
+   })
   Meteor.subscribe('users.party', FlowRouter.current().params.slug)
-  if (!Party.findOne({ slug: FlowRouter.current().params.slug })) {
-    const error = encodeURIComponent("Cette fête n'existe pas ! Oh non !")
-    FlowRouter.go(`/create?error=${error}`);
-  }
 })
 
 Template.partymobile.events({
