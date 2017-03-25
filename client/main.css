@@ -1,3 +1,8 @@
+/*Pour le fullscreen*/
+html,body{
+  height: 100vh!important;
+}
+
 /* CSS declarations go here */
 
 html, body, div, span, applet, object, iframe,

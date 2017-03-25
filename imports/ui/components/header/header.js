@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { FlowRouter } from 'meteor/kadira:flow-router'
+const screenfull = require('screenfull')
 
 import '../burd/burd.js'
 
@@ -22,7 +23,14 @@ Template.header.helpers({
   }
 })
 
+Template.header.rendered = function() {
+
+}
+
 Template.header.events({
+  'click .fullscreen'() {
+      screenfull.request();
+  },
   'click .deco'() {
     Meteor.logout(err => {
       if (err) {

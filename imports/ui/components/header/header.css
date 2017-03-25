@@ -57,3 +57,23 @@ h1.partyHead{
 	bottom: 10px;
 	left: 74px;
 }
+.fullscreen{
+	position: absolute;
+	bottom: 10px;
+	right: 74px;
+	display: inline-block;
+	width: 3em;
+	height: 3em;
+	border-style: none;
+	background: url(/images/fullscreen.svg);
+	background-color: #46CE69;
+	background-size: 2em;
+	background-repeat: no-repeat;
+	background-position: right;
+	padding: .5em;
+	border-radius:3em;
+}
+.fullscreen.fullscreenDesktop{
+	width:300px;
+
+}
