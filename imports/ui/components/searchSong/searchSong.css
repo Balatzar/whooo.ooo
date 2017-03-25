@@ -80,3 +80,11 @@
   background-color:#46CE69;
   border-radius: 100%;
 }
+@media screen and (max-width: 700px){ 
+  form.ajoutSong{
+    padding-top: 0;
+  }
+  form.ajoutSong input[type=text]{
+    margin-top: 0;
+  }
+}
