@@ -1,8 +1,14 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">	
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=high-dpi, initial-scale=1.0">
   <meta name="viewport" content="initial-scale=1">
+  <!-- pour iOs -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- pour android -->
+  <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=high-dpi, initial-scale=1.0">
+  <!-- pour windows phone -->
+  <meta name="msapplication-TileImage" content="tile-background.png">
+  <meta name="msapplication-TileColor" content="#46CE69">
   <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
@@ -24,7 +30,6 @@
 </head>
 
 <template name="main">
-
   {{ > header }}
 
   {{ > Template.dynamic template=content }}
