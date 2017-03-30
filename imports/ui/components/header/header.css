@@ -23,6 +23,7 @@ h1.partyHead{
 .leaf1 img{
 	width:100%;
 }
+
 .burbName{
 	position: absolute;
 	top:50%;
@@ -56,4 +57,17 @@ h1.partyHead{
 	position: absolute;
 	bottom: 10px;
 	left: 74px;
+}
+
+.decoMobile{
+	position: absolute;
+	left:auto;
+	right:1.2em;
+	top:30px;
+	display: inline-block;
+	width:30px;
+	height: 30px;
+	background:url(/images/logout.svg) no-repeat center;
+	border-style: none;
+	background-color: transparent;
 }

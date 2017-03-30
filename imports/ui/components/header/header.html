@@ -10,9 +10,14 @@
       {{ #with getUser}}
        {{ >burd }}
       {{ /with }}
-  <button class="deco">Deconnexion</button>
+      <button class="deco">Deconnexion</button>
       </div>
     {{ /if }}
   {{ /unless }}
+  {{ #if isMobile}}
+    {{ #if getUser }}
+      <button class="decoMobile deco"></button>
+    {{ /if }}
+  {{ /if }}
 </div>
 </template>
