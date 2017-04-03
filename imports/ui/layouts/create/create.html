@@ -3,11 +3,13 @@
     {{ # if getError }}
       {{ > error text=getError }}
     {{ / if }}
+    {{ #unless isMobile}}
     <h2>Créer une party</h2>
     <button class="create btn blue">Creer une Party</button>
     <div class="hr">
       <span class="textHr">ou bien</span>
     </div>
+    {{ /unless }}
     <h2>Rejoindre une Party</h2>
     <form>
       <fieldset class="form-fieldset ui-input __first">

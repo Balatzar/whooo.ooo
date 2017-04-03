@@ -24,5 +24,13 @@ Template.create.events({
 Template.create.helpers({
   getError() {
     return FlowRouter.current().queryParams.error
+  },
+  isMobile() {
+    const width = $('body').width()
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) || width < 900) {
+      return true
+    } else {
+      return false
+    }
   }
 })

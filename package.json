@@ -5,6 +5,7 @@
     "start": "meteor --settings settings.json --port 4000"
   },
   "dependencies": {
+    "add-to-homescreen": "^3.2.6",
     "babel-runtime": "^6.22.0",
     "bcrypt": "^1.0.2",
     "chance": "^1.0.4",
