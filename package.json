@@ -8,7 +8,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
+      "prettier --write --semi",
       "git add"
     ]
   },
@@ -68,7 +68,8 @@
         {
           "functions": false
         }
-      ]
+      ],
+      "quotes": ["error", "double"]
     }
   }
 }
