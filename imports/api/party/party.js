@@ -1,68 +1,68 @@
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { check } from 'meteor/check';
-const createSlug = require('slug')
-const Chance = require('chance')
-const chance = new Chance
+import { Mongo } from "meteor/mongo"
+import { SimpleSchema } from "meteor/aldeed:simple-schema"
+import { check } from "meteor/check"
+const createSlug = require("slug")
+const Chance = require("chance")
+const chance = new Chance()
 
 const partySchema = new SimpleSchema({
   name: {
     type: String,
-    optional: false,
+    optional: false
   },
   slug: {
     type: String,
-    optional: false,
+    optional: false
   },
   creator: {
     type: String,
-    optional: false,
+    optional: false
   },
   currentSong: {
     type: String,
-    optional: false,
+    optional: false
   },
   songs: {
     type: [String],
-    optional: false,
+    optional: false
   },
   toPlay: {
     type: [String],
-    optional: false,
+    optional: false
   },
   played: {
     type: [String],
-    optional: false,
+    optional: false
   },
   burds: {
     type: [String],
-    optional: false,
+    optional: false
   },
   createdAt: {
     type: Date,
-    optional: false,
-  },
-});
+    optional: false
+  }
+})
 
 class PartyCollection extends Mongo.Collection {
   insert(doc, callback) {
-    const ourDoc = doc;
-    ourDoc.createdAt = new Date();
+    const ourDoc = doc
+    ourDoc.createdAt = new Date()
     ourDoc.slug = createUniqueSlug(doc.name)
     console.log(ourDoc)
     try {
-      check(ourDoc, partySchema);
-      const result = super.insert(ourDoc, callback);
-      return ourDoc.slug;
+      check(ourDoc, partySchema)
+      super.insert(ourDoc, callback)
+      return ourDoc.slug
     } catch (e) {
-      throw e;
+      throw e
     }
   }
 }
 
-const Party = new PartyCollection('parties');
+const Party = new PartyCollection("parties")
 
-export default Party;
+export default Party
 
 function createUniqueSlug(name) {
   const slug = `${createSlug(name).toLowerCase()}${chance.millisecond()}`

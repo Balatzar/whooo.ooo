@@ -1,13 +1,14 @@
-import '../imports/startup/client';
-import './main.css';
-import { ATH } from 'add-to-homescreen'
+import { Template } from "meteor/templating"
 
-import '../imports/ui/components/header/header'
-import '../imports/ui/components/footer/footer'
+import "../imports/startup/client"
+import "./main.css"
+
+import "../imports/ui/components/header/header"
+import "../imports/ui/components/footer/footer"
 
 Template.main.onRendered(() => {
-  console.log('hello');
+  console.log("hello")
   addToHomescreen({
-    displayPace:600, 
-  });
+    displayPace: 600
+  })
 })

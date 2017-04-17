@@ -4,7 +4,8 @@
   "scripts": {
     "start": "meteor --settings settings.json --port 4000",
     "lint": "eslint .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepush": "eslint ."
   },
   "lint-staged": {
     "*.js": [
@@ -40,7 +41,9 @@
       "airbnb/base",
       "plugin:meteor/recommended"
     ],
-    "globals": {},
+    "globals": {
+      "addToHomescreen": true
+    },
     "rules": {
       "meteor/eventmap-params": [
         2,

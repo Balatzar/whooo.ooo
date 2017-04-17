@@ -1,14 +1,14 @@
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { Meteor } from "meteor/meteor"
+import { check } from "meteor/check"
 
-import Party from './party'
-import Song from '../song/song'
+import Party from "./party"
+import Song from "../song/song"
 
 Meteor.methods({
-  'party.create'({ name, url }) {
-    console.log('party.create')
+  "party.create"({ name, url }) {
+    console.log("party.create")
     const user = Meteor.users.findOne(this.userId)
-    const song = Meteor.call('song.createFromUrl', url)
+    const song = Meteor.call("song.createFromUrl", url)
     const party = {
       creator: user.username,
       name,
@@ -21,57 +21,75 @@ Meteor.methods({
     return Party.insert(party)
   },
 
-  'party.addSong'(song, partyId) {
-    console.log('party.addSong')
+  "party.addSong"(song, partyId) {
+    console.log("party.addSong")
+    check(song, String)
+    check(partyId, String)
     const songId = Song.insert(song)
     const party = Party.findOne(partyId)
     if (songId === party.currentSong || party.songs.indexOf(songId) !== -1) {
       return 0
     }
-    return Party.update({ _id: partyId }, {
-      $addToSet: {
-        songs: songId,
-        toPlay: songId,
+    return Party.update(
+      { _id: partyId },
+      {
+        $addToSet: {
+          songs: songId,
+          toPlay: songId
+        }
       }
-    })
+    )
   },
 
-  'party.addSongFromUrl'(url, partyId) {
-    console.log('party.addSongFromUrl')
-    const songId = Meteor.call('song.createFromUrl', url)
+  "party.addSongFromUrl"(url, partyId) {
+    console.log("party.addSongFromUrl")
+    check(url, String)
+    check(partyId, String)
+    const songId = Meteor.call("song.createFromUrl", url)
     const party = Party.findOne(partyId)
     if (songId === party.currentSong || party.songs.indexOf(songId) !== -1) {
       return 0
     }
-    return Party.update({ _id: partyId }, {
-      $addToSet: {
-        songs: songId,
-        toPlay: songId,
+    return Party.update(
+      { _id: partyId },
+      {
+        $addToSet: {
+          songs: songId,
+          toPlay: songId
+        }
       }
-    })
+    )
   },
 
-  'party.addSongFromSearch'(song, partyId) {
-    console.log('party.addSongFromSearch')
+  "party.addSongFromSearch"(song, partyId) {
+    console.log("party.addSongFromSearch")
+    check(song, String)
+    check(partyId, String)
     console.log(song)
-    const songToCreate = Object.assign({}, song.snippet, { id: song.id.videoId })
+    const songToCreate = Object.assign({}, song.snippet, {
+      id: song.id.videoId
+    })
     const songId = Song.insert(songToCreate)
     const party = Party.findOne(partyId)
     if (songId === party.currentSong || party.songs.indexOf(songId) !== -1) {
       return 0
     }
-    return Party.update({ _id: partyId }, {
-      $addToSet: {
-        songs: songId,
-        toPlay: songId,
+    return Party.update(
+      { _id: partyId },
+      {
+        $addToSet: {
+          songs: songId,
+          toPlay: songId
+        }
       }
-    })
+    )
   },
 
-  'party.nextSong'(partyId) {
-    console.log('party.nextSong')
+  "party.nextSong"(partyId) {
+    console.log("party.nextSong")
+    check(partyId, String)
     const party = Party.findOne(partyId)
-    if (!party.toPlay.length) return
+    if (!party.toPlay.length) return 0
     return Party.update(partyId, {
       $set: { currentSong: party.toPlay[0] },
       $pop: { toPlay: -1 },
@@ -79,10 +97,11 @@ Meteor.methods({
     })
   },
 
-  'party.previousSong'(partyId) {
-    console.log('party.previousSong')
+  "party.previousSong"(partyId) {
+    console.log("party.previousSong")
+    check(partyId, String)
     const party = Party.findOne(partyId)
-    if (!party.played.length) return
+    if (!party.played.length) return 0
     return Party.update(partyId, {
       $set: { currentSong: party.played[party.played.length - 1] },
       $pop: { played: 1 },
@@ -90,33 +109,40 @@ Meteor.methods({
     })
   },
 
-  'party.addBurd'(slug) {
-    console.log('party.addBurd')
+  "party.addBurd"(slug) {
+    console.log("party.addBurd")
+    check(slug, String)
     const user = Meteor.users.findOne(this.userId)
     const profile = user.profile
     profile.currentParty = slug
     Meteor.users.update(this.userId, {
       $set: { profile }
     })
-    return Party.update({ slug }, {
-      $addToSet: { burds: user.username }
-    })
+    return Party.update(
+      { slug },
+      {
+        $addToSet: { burds: user.username }
+      }
+    )
   },
 
-  'party.removeBurd'() {
-    console.log('party.removeBurd')
+  "party.removeBurd"() {
+    console.log("party.removeBurd")
     if (!this.userId) {
-      return 'disconnected'
+      return "disconnected"
     }
     const user = Meteor.users.findOne(this.userId)
     console.log(user)
     const profile = user.profile
-    Party.update({ slug: profile.currentParty }, {
-      $pop: { burds: user.username }
-    })
-    profile.currentParty = ''
+    Party.update(
+      { slug: profile.currentParty },
+      {
+        $pop: { burds: user.username }
+      }
+    )
+    profile.currentParty = ""
     return Meteor.users.update(this.userId, {
       $set: { profile }
     })
-  },
-});
+  }
+})

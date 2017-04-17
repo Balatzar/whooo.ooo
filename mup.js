@@ -1,27 +1,27 @@
 module.exports = {
   servers: {
     one: {
-      host: '95.85.41.122',
-      username: 'root',
-      pem: '/home/balthazar/.ssh/id_rsa',
+      host: "95.85.41.122",
+      username: "root",
+      pem: "/home/balthazar/.ssh/id_rsa"
     }
   },
 
   meteor: {
-    name: 'whoooooo',
-    path: '.',
+    name: "whoooooo",
+    path: ".",
     servers: {
       one: {}
     },
     buildOptions: {
-      serverOnly: true,
+      serverOnly: true
     },
     env: {
-      ROOT_URL: 'http://whooo.ooo',
-      MONGO_URL: 'mongodb://127.0.0.1:27017/whoooooo'
+      ROOT_URL: "http://whooo.ooo",
+      MONGO_URL: "mongodb://127.0.0.1:27017/whoooooo"
     },
 
-    dockerImage: 'abernix/meteord:base',
+    dockerImage: "abernix/meteord:base",
     deployCheckWaitTime: 60
   },
 
@@ -29,7 +29,7 @@ module.exports = {
     oplog: true,
     port: 27017,
     servers: {
-      one: {},
-    },
-  },
-};
+      one: {}
+    }
+  }
+}

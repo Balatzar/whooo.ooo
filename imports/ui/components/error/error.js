@@ -1,2 +1,2 @@
-import './error.html'
-import './error.css'
+import "./error.html"
+import "./error.css"

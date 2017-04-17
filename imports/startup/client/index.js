@@ -1,2 +1,2 @@
-import "./routes";
-import "./checkParty";
+import "./routes"
+import "./checkParty"
