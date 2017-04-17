@@ -38,7 +38,7 @@ Template.searchSong.events({
           Session.set("prevPageToken", null)
           $(".addSong").removeClass("active")
         }
-      }
+      },
     )
   },
 
@@ -70,7 +70,7 @@ Template.searchSong.events({
         Session.set("prevPageToken", res.prevPageToken)
       }
     })
-  }
+  },
 })
 
 Template.searchSong.helpers({
@@ -84,5 +84,5 @@ Template.searchSong.helpers({
 
   prevPageToken() {
     return Session.get("prevPageToken")
-  }
+  },
 })

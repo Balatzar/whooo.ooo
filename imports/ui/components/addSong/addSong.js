@@ -19,7 +19,7 @@ Template.addSong.events({
         } else {
           input.val("")
         }
-      }
+      },
     )
-  }
+  },
 })

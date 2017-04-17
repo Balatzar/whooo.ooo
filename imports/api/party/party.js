@@ -8,40 +8,40 @@ const chance = new Chance()
 const partySchema = new SimpleSchema({
   name: {
     type: String,
-    optional: false
+    optional: false,
   },
   slug: {
     type: String,
-    optional: false
+    optional: false,
   },
   creator: {
     type: String,
-    optional: false
+    optional: false,
   },
   currentSong: {
     type: String,
-    optional: false
+    optional: false,
   },
   songs: {
     type: [String],
-    optional: false
+    optional: false,
   },
   toPlay: {
     type: [String],
-    optional: false
+    optional: false,
   },
   played: {
     type: [String],
-    optional: false
+    optional: false,
   },
   burds: {
     type: [String],
-    optional: false
+    optional: false,
   },
   createdAt: {
     type: Date,
-    optional: false
-  }
+    optional: false,
+  },
 })
 
 class PartyCollection extends Mongo.Collection {

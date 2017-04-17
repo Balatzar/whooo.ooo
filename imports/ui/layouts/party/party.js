@@ -36,5 +36,5 @@ Template.party.helpers({
 
   allBurds() {
     return Meteor.users.find()
-  }
+  },
 })

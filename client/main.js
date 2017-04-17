@@ -8,6 +8,6 @@ import "../imports/ui/components/footer/footer"
 
 Template.main.onRendered(() => {
   addToHomescreen({
-    displayPace: 600
+    displayPace: 600,
   })
 })

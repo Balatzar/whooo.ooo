@@ -18,7 +18,7 @@ Template.createparty.events({
       "party.create",
       {
         name,
-        url
+        url,
       },
       (err, res) => {
         if (err) {
@@ -26,7 +26,7 @@ Template.createparty.events({
         } else {
           FlowRouter.go(`/party/${res}`)
         }
-      }
+      },
     )
-  }
+  },
 })

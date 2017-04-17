@@ -18,7 +18,7 @@ Template.create.events({
       return
     }
     FlowRouter.go(`/party/${partyId}`)
-  }
+  },
 })
 
 Template.create.helpers({
@@ -29,11 +29,11 @@ Template.create.helpers({
     const width = $("body").width()
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-        navigator.userAgent
+        navigator.userAgent,
       ) || width < 900
     ) {
       return true
     }
     return false
-  }
+  },
 })

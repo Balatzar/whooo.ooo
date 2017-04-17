@@ -16,7 +16,7 @@ Meteor.methods({
       songs: [song],
       toPlay: [],
       played: [],
-      burds: [user.username]
+      burds: [user.username],
     }
     return Party.insert(party)
   },
@@ -35,9 +35,9 @@ Meteor.methods({
       {
         $addToSet: {
           songs: songId,
-          toPlay: songId
-        }
-      }
+          toPlay: songId,
+        },
+      },
     )
   },
 
@@ -55,9 +55,9 @@ Meteor.methods({
       {
         $addToSet: {
           songs: songId,
-          toPlay: songId
-        }
-      }
+          toPlay: songId,
+        },
+      },
     )
   },
 
@@ -67,7 +67,7 @@ Meteor.methods({
     check(partyId, String)
     console.log(song)
     const songToCreate = Object.assign({}, song.snippet, {
-      id: song.id.videoId
+      id: song.id.videoId,
     })
     const songId = Song.insert(songToCreate)
     const party = Party.findOne(partyId)
@@ -79,9 +79,9 @@ Meteor.methods({
       {
         $addToSet: {
           songs: songId,
-          toPlay: songId
-        }
-      }
+          toPlay: songId,
+        },
+      },
     )
   },
 
@@ -93,7 +93,7 @@ Meteor.methods({
     return Party.update(partyId, {
       $set: { currentSong: party.toPlay[0] },
       $pop: { toPlay: -1 },
-      $push: { played: party.currentSong }
+      $push: { played: party.currentSong },
     })
   },
 
@@ -105,7 +105,7 @@ Meteor.methods({
     return Party.update(partyId, {
       $set: { currentSong: party.played[party.played.length - 1] },
       $pop: { played: 1 },
-      $push: { toPlay: party.currentSong }
+      $push: { toPlay: party.currentSong },
     })
   },
 
@@ -116,13 +116,13 @@ Meteor.methods({
     const profile = user.profile
     profile.currentParty = slug
     Meteor.users.update(this.userId, {
-      $set: { profile }
+      $set: { profile },
     })
     return Party.update(
       { slug },
       {
-        $addToSet: { burds: user.username }
-      }
+        $addToSet: { burds: user.username },
+      },
     )
   },
 
@@ -137,12 +137,12 @@ Meteor.methods({
     Party.update(
       { slug: profile.currentParty },
       {
-        $pop: { burds: user.username }
-      }
+        $pop: { burds: user.username },
+      },
     )
     profile.currentParty = ""
     return Meteor.users.update(this.userId, {
-      $set: { profile }
+      $set: { profile },
     })
-  }
+  },
 })

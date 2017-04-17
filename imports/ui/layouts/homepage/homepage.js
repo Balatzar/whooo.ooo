@@ -21,7 +21,7 @@ Template.homepage.onRendered(() => {
 Template.homepage.helpers({
   seenModal() {
     return Session.get("seenModal")
-  }
+  },
 })
 
 Template.homepage.events({
@@ -48,5 +48,5 @@ Template.homepage.events({
         })
       }
     })
-  }
+  },
 })

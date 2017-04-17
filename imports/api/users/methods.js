@@ -11,9 +11,9 @@ Meteor.methods({
         username,
         password: "insecure",
         profile: {
-          validated: false
-        }
+          validated: false,
+        },
       })
     }
-  }
+  },
 })

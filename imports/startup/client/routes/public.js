@@ -13,21 +13,21 @@ FlowRouter.route("/", {
   name: "indexPage",
   action() {
     BlazeLayout.render("main", { content: "homepage" })
-  }
+  },
 })
 
 FlowRouter.route("/create", {
   name: "createPage",
   action() {
     BlazeLayout.render("main", { content: "create" })
-  }
+  },
 })
 
 FlowRouter.route("/create/party", {
   name: "createPartyPage",
   action() {
     BlazeLayout.render("main", { content: "createparty" })
-  }
+  },
 })
 
 FlowRouter.route("/party/:slug", {
@@ -46,7 +46,7 @@ FlowRouter.route("/party/:slug", {
     } else {
       BlazeLayout.render("main", { content: "party" })
     }
-  }
+  },
 })
 
 function joinParty(route) {

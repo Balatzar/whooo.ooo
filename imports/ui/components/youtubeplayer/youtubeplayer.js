@@ -29,11 +29,11 @@ Template.youtubeplayer.onRendered(() => {
       height: "100%",
       events: {
         onReady,
-        onStateChange
+        onStateChange,
       },
       playerVars: {
-        controls: 0
-      }
+        controls: 0,
+      },
     })
   }
 
@@ -143,7 +143,7 @@ Template.youtubeplayer.helpers({
       return song ? song.name : ""
     }
     return ""
-  }
+  },
 })
 
 Template.youtubeplayer.events({
@@ -157,7 +157,7 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      }
+      },
     )
   },
 
@@ -203,7 +203,7 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      }
+      },
     )
   },
 
@@ -217,9 +217,9 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      }
+      },
     )
-  }
+  },
 })
 
 function formatTime(time) {

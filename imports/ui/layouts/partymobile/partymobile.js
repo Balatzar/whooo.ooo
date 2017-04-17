@@ -33,7 +33,7 @@ Template.partymobile.events({
   },
   "click .closeAddsong"() {
     $(".addSong").removeClass("active")
-  }
+  },
 })
 
 Template.partymobile.helpers({
@@ -54,5 +54,5 @@ Template.partymobile.helpers({
 
   allBurds() {
     return Meteor.users.find()
-  }
+  },
 })

@@ -46,5 +46,5 @@ Template.playlist.helpers({
       return party.toPlay.map(id => Song.findOne(id))
     }
     return []
-  }
+  },
 })
