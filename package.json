@@ -2,7 +2,15 @@
   "name": "meteor-startup",
   "private": true,
   "scripts": {
-    "start": "meteor --settings settings.json --port 4000"
+    "start": "meteor --settings settings.json --port 4000",
+    "lint": "eslint .",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "add-to-homescreen": "^3.2.6",
@@ -11,5 +19,56 @@
     "chance": "^1.0.4",
     "meteor-node-stubs": "~0.2.0",
     "slug": "^0.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.3.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-meteor": "^3.0.1",
+    "eslint-plugin-react": "^4.0.0",
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "meteor"
+    ],
+    "extends": [
+      "airbnb/base",
+      "plugin:meteor/recommended"
+    ],
+    "globals": {},
+    "rules": {
+      "meteor/eventmap-params": [
+        2,
+        {
+          "eventParamName": "event",
+          "templateInstanceParamName": "instance"
+        }
+      ],
+      "meteor/template-names": [
+        0
+      ],
+      "max-len": [
+        "error",
+        150
+      ],
+      "meteor/no-session": 0,
+      "no-alert": 1,
+      "no-console": 1,
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false
+        }
+      ]
+    }
   }
 }
