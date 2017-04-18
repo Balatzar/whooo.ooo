@@ -26,7 +26,7 @@ Template.createparty.events({
         } else {
           FlowRouter.go(`/party/${res}`)
         }
-      },
+      }
     )
   },
 })

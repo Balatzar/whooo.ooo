@@ -31,7 +31,7 @@ Meteor.methods({
       console.log(url)
       const res = HTTP.get(yturl)
       const yt = Object.assign({}, res.data.items[0].snippet, {
-        id: res.data.items[0].id
+        id: res.data.items[0].id,
       })
       console.log(yt)
       const result = Song.insert(yt)
@@ -85,5 +85,5 @@ Meteor.methods({
     } catch (e) {
       throw e
     }
-  }
+  },
 })

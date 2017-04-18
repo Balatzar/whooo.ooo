@@ -38,7 +38,7 @@ Template.searchSong.events({
           Session.set("prevPageToken", null)
           $(".addSong").removeClass("active")
         }
-      },
+      }
     )
   },
 

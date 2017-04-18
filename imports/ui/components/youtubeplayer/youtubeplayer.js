@@ -157,7 +157,7 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      },
+      }
     )
   },
 
@@ -203,7 +203,7 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      },
+      }
     )
   },
 
@@ -217,7 +217,7 @@ Template.youtubeplayer.events({
         } else {
           console.log(res)
         }
-      },
+      }
     )
   },
 })

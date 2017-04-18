@@ -37,7 +37,7 @@ Meteor.methods({
           songs: songId,
           toPlay: songId,
         },
-      },
+      }
     )
   },
 
@@ -57,7 +57,7 @@ Meteor.methods({
           songs: songId,
           toPlay: songId,
         },
-      },
+      }
     )
   },
 
@@ -81,7 +81,7 @@ Meteor.methods({
           songs: songId,
           toPlay: songId,
         },
-      },
+      }
     )
   },
 
@@ -122,7 +122,7 @@ Meteor.methods({
       { slug },
       {
         $addToSet: { burds: user.username },
-      },
+      }
     )
   },
 
@@ -138,7 +138,7 @@ Meteor.methods({
       { slug: profile.currentParty },
       {
         $pop: { burds: user.username },
-      },
+      }
     )
     profile.currentParty = ""
     return Meteor.users.update(this.userId, {
