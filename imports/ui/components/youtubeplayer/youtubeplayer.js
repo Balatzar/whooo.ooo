@@ -228,7 +228,7 @@ function formatTime(time) {
   const minutes = Math.floor(newTime / 60)
   let seconds = newTime - minutes * 60
 
-  seconds = seconds < 10 ? "0${seconds}" : seconds
+  seconds = seconds < 10 ? `0${seconds}` : seconds
 
-  return "${minutes} : ${seconds}"
+  return `${minutes} : ${seconds}`
 }
