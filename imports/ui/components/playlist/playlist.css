@@ -4,6 +4,6 @@
   margin:10px 5%;
   text-align: center;
   padding:1em;
-  background: #eee;
+  background: rgba(0,0,0,.1);
   border-radius: 100px;
 }
