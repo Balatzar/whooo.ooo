@@ -63,7 +63,7 @@ Meteor.methods({
 
   "party.addSongFromSearch"(song, partyId) {
     console.log("party.addSongFromSearch")
-    check(song, String)
+    check(song, Object)
     check(partyId, String)
     console.log(song)
     const songToCreate = Object.assign({}, song.snippet, {
