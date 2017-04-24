@@ -140,7 +140,7 @@ Template.youtubeplayer.helpers({
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
       const song = Song.findOne(party.currentSong)
-      return song ? song.name : ""
+      return song ? song.title : ""
     }
     return ""
   },
