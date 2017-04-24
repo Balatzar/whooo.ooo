@@ -5,10 +5,13 @@ import Party from "./party"
 import Song from "../song/song"
 
 Meteor.methods({
-  "party.create"({ name, url }) {
+  "party.create"({ name }) {
     console.log("party.create")
     const user = Meteor.users.findOne(this.userId)
-    const song = Meteor.call("song.createFromUrl", url)
+    const song = Meteor.call(
+      "song.createFromUrl",
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    )
     const party = {
       creator: user.username,
       name,
