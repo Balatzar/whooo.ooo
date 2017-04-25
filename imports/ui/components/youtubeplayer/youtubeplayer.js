@@ -9,7 +9,7 @@ import { $ } from "meteor/jquery"
 import { FlowRouter } from "meteor/kadira:flow-router"
 
 import Party from "../../../api/party/party"
-import Song from "../../../api/song/song"
+import SongParty from "../../../api/songParty/songParty"
 
 import "./youtubeplayer.html"
 import "./youtubeplayer.css"
@@ -19,7 +19,7 @@ let player
 
 Template.youtubeplayer.onRendered(() => {
   Meteor.subscribe("parties.all")
-  Meteor.subscribe("songs.all")
+  Meteor.subscribe("songParties.all")
   Meteor.subscribe("users.party", FlowRouter.current().params.slug)
   const playlistId = Template.currentData().playlistId
 
@@ -43,7 +43,7 @@ Template.youtubeplayer.onRendered(() => {
     const party = Party.findOne(playlistId)
     console.log(party)
     if (party) {
-      const song = Song.findOne(party.currentSong)
+      const song = SongParty.findOne(party.currentSong)
       if (song) {
         const currentSong = song.id
         console.log(song)
@@ -139,7 +139,7 @@ Template.youtubeplayer.helpers({
   currentSongName() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
-      const song = Song.findOne(party.currentSong)
+      const song = SongParty.findOne(party.currentSong)
       return song ? song.title : ""
     }
     return ""
