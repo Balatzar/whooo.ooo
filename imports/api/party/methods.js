@@ -3,6 +3,7 @@ import { check } from "meteor/check"
 
 import Party from "./party"
 import Song from "../song/song"
+import SongParty from "../songParty/songParty"
 
 Meteor.methods({
   "party.create"({ name }) {
@@ -71,8 +72,9 @@ Meteor.methods({
     console.log(song)
     const songToCreate = Object.assign({}, song.snippet, {
       id: song.id.videoId,
+      owner: this.userId,
     })
-    const songId = Song.insert(songToCreate)
+    const songId = SongParty.insert(songToCreate)
     const party = Party.findOne(partyId)
     if (songId === party.currentSong || party.songs.indexOf(songId) !== -1) {
       return 0

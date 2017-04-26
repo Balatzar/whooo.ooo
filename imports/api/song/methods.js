@@ -30,15 +30,15 @@ Meteor.methods({
     }
     try {
       const yturl = `${youtubeurl}/videos?part=snippet&id=${id}&key=${Meteor.settings.YOUTUBEAPI}`
-      console.log(url)
+      console.log(yturl)
       const res = HTTP.get(yturl)
       const yt = Object.assign({}, res.data.items[0].snippet, {
         id: res.data.items[0].id,
       })
       console.log(yt)
-      const result = Song.insert(yt)
-      result.owner = this.userId
-      return SongParty.insert(result)
+      Song.insert(yt)
+      yt.owner = this.userId
+      return SongParty.insert(yt)
     } catch (e) {
       throw e
     }

@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import { Template } from "meteor/templating"
 
-import Song from "../../../api/song/song"
+import SongParty from "../../../api/songParty/songParty"
 import Party from "../../../api/party/party"
 
 import "./playlist.css"
@@ -10,14 +10,14 @@ import "../song/song.js"
 
 Template.playlist.onRendered(() => {
   Meteor.subscribe("parties.all")
-  Meteor.subscribe("songs.all")
+  Meteor.subscribe("songParties.all")
 })
 
 Template.playlist.helpers({
   played() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
-      return party.played.map(id => Song.findOne(id))
+      return party.played.map(id => SongParty.findOne(id))
     }
     return []
   },
@@ -25,7 +25,7 @@ Template.playlist.helpers({
   current() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
-      return Song.findOne(party.currentSong)
+      return SongParty.findOne(party.currentSong)
     }
     return null
   },
@@ -43,7 +43,7 @@ Template.playlist.helpers({
   toPlay() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
-      return party.toPlay.map(id => Song.findOne(id))
+      return party.toPlay.map(id => SongParty.findOne(id))
     }
     return []
   },
