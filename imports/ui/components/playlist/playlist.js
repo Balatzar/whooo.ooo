@@ -43,7 +43,9 @@ Template.playlist.helpers({
   toPlay() {
     const party = Party.findOne(Template.currentData().playlistId)
     if (party) {
-      return party.toPlay.map(id => SongParty.findOne(id))
+      return party.toPlay
+        .map(id => SongParty.findOne(id))
+        .sort((a, b) => a.votes.length < b.votes.length)
     }
     return []
   },

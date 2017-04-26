@@ -94,10 +94,15 @@ Meteor.methods({
     console.log("party.nextSong")
     check(partyId, String)
     const party = Party.findOne(partyId)
+    console.log(party)
     if (!party.toPlay.length) return 0
+    const nextSong = party.toPlay
+      .map(id => SongParty.findOne(id))
+      .sort((a, b) => a.votes.length < b.votes.length)
+      .map(song => song._id)[0]
     return Party.update(partyId, {
-      $set: { currentSong: party.toPlay[0] },
-      $pop: { toPlay: -1 },
+      $set: { currentSong: nextSong },
+      $pull: { toPlay: nextSong },
       $push: { played: party.currentSong },
     })
   },
