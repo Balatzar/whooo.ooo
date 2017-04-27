@@ -27,3 +27,20 @@
 .played .song{
   opacity: .5;
 }
+
+/* VOTES  SONGS */
+.js-vote{
+  display: inline-block;
+  position: absolute;
+  right:10px;
+  bottom:10px;
+  margin:0;
+  padding:.5em;
+  font-weight: bold;
+  background-color: #0A68EF;
+  border-radius: 300px;
+  color:#fff;
+}
+.js-vote:hover{
+  cursor: pointer;
+}
