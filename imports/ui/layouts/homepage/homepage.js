@@ -22,6 +22,18 @@ Template.homepage.helpers({
   seenModal() {
     return Session.get("seenModal")
   },
+  isMobile() {
+    const width = $("body").width()
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+        navigator.userAgent
+      ) || width < 900
+    ) {
+      return true
+    }
+    return false
+  },
+
 })
 
 Template.homepage.events({
