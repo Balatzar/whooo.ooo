@@ -12,8 +12,7 @@
     <div class="container side last participants">
       <div class="share-link">
         <p>Lien unique a partager</p>
-        <input type="text" value="{{ slug }}">
-        <a href="http://www.facebook.com/share.php?u=http://whooo.ooo/party/{{ slug }}&title=Rejoins moi sur WHOOOOOO">SHARE</a>
+        <input onClick="this.select();" readonly type="text" value="{{ slug }}">
       </div>
       <h2>Qui est branché</h2>
       {{ # each allBurds }}
