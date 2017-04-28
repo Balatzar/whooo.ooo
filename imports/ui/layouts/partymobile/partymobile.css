@@ -89,7 +89,7 @@
   text-align: left;
   padding-left: 1em;
 }
-.mobile .container.participants span{
+.mobile .container.participants .ico{
   display: inline-block;
   height: 1.5em;
   width:1.5em;
@@ -98,7 +98,7 @@
   background:url(/images/arrow.svg);
   transition: all .5s;
 }
-.mobile .container.participants.active span{
+.mobile .container.participants.active .ico{
   transform: rotate(180deg);
 }
 .mobile .participants{
@@ -123,4 +123,49 @@
   float: right;
   font-size: 1.5em;
   line-height: 60px;
+}
+
+.mobile .participants h3{
+  position: absolute;
+  bottom: 80px;
+  font-size:1.2em;
+  text-align: center;
+  display: inline-block;
+  width: 80%;
+  margin-left: 10%;
+}
+.mobile .participants h3 span{
+  display: inline-block;
+  font-size: 1.2em;
+  width: 100%;
+  border-radius: 200px;
+  border:2px solid #fff;
+  margin: 0;
+  margin-top:10px;
+  line-height: 1.5em;
+}
+
+.mobile .fbShare{
+  display: inline-block;
+  width: 80%;
+  margin-left:10%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 10px;
+  padding: .5em;
+  border-radius: 200px;
+  font-size: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  color: #0A68EF;
+  font-weight: 700;
+}
+.mobile .fbShare:before{
+  content:url(/images/share.svg);
+  display: inline-block;
+  width: 20px;
+  height:20px;
+  position: relative;
+  right:7px;
+  top:4px;
 }

@@ -45,15 +45,6 @@
   color:#fff;
   margin-bottom: 5px
 }
-.share-link p:before{
-  content:url(/images/share.svg);
-  display: inline-block;
-  width: 20px;
-  height:20px;
-  position: relative;
-  right:7px;
-  top:5px;
-}
 .share-link input{
   color:#1E3659;
   font-size:1.2em;

@@ -12,14 +12,18 @@
       </div>
     </div>
     <div class="container last participants">
+
       <h2>Qui est branché <span class="ico"></span></h2>
+      <h3>Lien unique à partager 
+          <span>{{ slug }}</span>
+      </h3>
+      <a class="fbShare" href="fb-messenger://share?link=http://whooo.ooo/party/{{ slug }}">Inviter des burbs !</a>
       <div class="me">
         {{ #if getUsername }}
       <div class="burbName">
       {{ #with getUsername}}
        {{ >burd }}
       {{ /with }}
-  <button class="deco">Deconnexion</button>
       </div>
     {{ /if }}
       </div>
