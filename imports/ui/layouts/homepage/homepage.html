@@ -1,5 +1,8 @@
 <template name="homepage">
   <div class="container centered">
+    {{ # if isMobile }}
+    <p class="descIntro"><img src="/images/burb_ico.svg"></p>
+    {{ / if }}
     <h2>Ton p'tit nom d'oiseau</h2>
     <form>
       <fieldset class="form-fieldset ui-input __first">
