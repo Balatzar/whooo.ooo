@@ -11,7 +11,7 @@ Meteor.methods({
       return SongParty.update(
         { _id },
         {
-          $pop: {
+          $pull: {
             votes: this.userId,
           },
         }
