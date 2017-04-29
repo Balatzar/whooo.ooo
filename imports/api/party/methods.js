@@ -10,7 +10,7 @@ Meteor.methods({
     const user = Meteor.users.findOne(this.userId)
     const song = Meteor.call(
       "song.createFromUrl",
-      "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      "https://www.youtube.com/watch?v=PW-hCYPFpKM"
     )
     const party = {
       creator: user.username,
