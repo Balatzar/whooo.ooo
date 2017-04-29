@@ -3,6 +3,7 @@ import { HTTP } from "meteor/http"
 import { check } from "meteor/check"
 
 import Song from "./song.js"
+import SongParty from "../songParty/songParty.js"
 
 const youtubeurl = "https://www.googleapis.com/youtube/v3"
 
@@ -24,18 +25,20 @@ Meteor.methods({
     const song = Song.findOne({ id })
     console.log(song)
     if (song) {
-      return song._id
+      song.owner = this.userId
+      return SongParty.insert(song)
     }
     try {
       const yturl = `${youtubeurl}/videos?part=snippet&id=${id}&key=${Meteor.settings.YOUTUBEAPI}`
-      console.log(url)
+      console.log(yturl)
       const res = HTTP.get(yturl)
       const yt = Object.assign({}, res.data.items[0].snippet, {
         id: res.data.items[0].id,
       })
       console.log(yt)
-      const result = Song.insert(yt)
-      return result
+      Song.insert(yt)
+      yt.owner = this.userId
+      return SongParty.insert(yt)
     } catch (e) {
       throw e
     }
