@@ -2,7 +2,7 @@
   "name": "meteor-startup",
   "private": true,
   "scripts": {
-    "start": "meteor --settings settings.json --port 4000",
+    "start": "MONGO_URL=mongodb://localhost:27017/whoooooo meteor --settings settings.json --port 4000",
     "lint": "eslint .",
     "precommit": "lint-staged",
     "prepush": "eslint ."
@@ -46,8 +46,7 @@
     },
     "rules": {
       "meteor/eventmap-params": [
-        2,
-        {
+        2, {
           "eventParamName": "event",
           "templateInstanceParamName": "instance"
         }
@@ -67,8 +66,7 @@
         "never"
       ],
       "no-use-before-define": [
-        "error",
-        {
+        "error", {
           "functions": false
         }
       ],
