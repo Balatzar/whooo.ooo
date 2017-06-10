@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "add-to-homescreen": "^3.2.6",
-    "babel-runtime": "^6.22.0",
+    "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.2",
-    "chance": "^1.0.4",
+    "chance": "^1.0.9",
     "meteor-node-stubs": "~0.2.0",
     "slug": "^0.9.1"
   },
@@ -72,7 +72,10 @@
           "functions": false
         }
       ],
-      "quotes": ["error", "double"]
+      "quotes": [
+        "error",
+        "double"
+      ]
     }
   }
 }
