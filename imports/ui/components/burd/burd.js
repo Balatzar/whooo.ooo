@@ -1,2 +1,2 @@
-import "./burd.css"
-import "./burd.html"
+import "./burd.css";
+import "./burd.html";

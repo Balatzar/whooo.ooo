@@ -1,4 +1,4 @@
-import "./song"
-import "./party"
-import "./users"
-import "./songParty"
+import "./song";
+import "./party";
+import "./users";
+import "./songParty";

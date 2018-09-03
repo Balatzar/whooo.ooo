@@ -1,4 +1,4 @@
-import { Meteor } from "meteor/meteor"
-import SongParty from "./songParty.js"
+import { Meteor } from "meteor/meteor";
+import SongParty from "./songParty.js";
 
-Meteor.publish("songParties.all", () => SongParty.find({}))
+Meteor.publish("songParties.all", () => SongParty.find({}));

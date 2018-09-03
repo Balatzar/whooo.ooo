@@ -1,16 +1,16 @@
-import { Meteor } from "meteor/meteor"
-import { Template } from "meteor/templating"
-import { FlowRouter } from "meteor/kadira:flow-router"
+import { Meteor } from "meteor/meteor";
+import { Template } from "meteor/templating";
+import { FlowRouter } from "meteor/kadira:flow-router";
 
-import "./createparty.css"
-import "./createparty.html"
+import "./createparty.css";
+import "./createparty.html";
 
 Template.createparty.events({
   "submit form"(event) {
-    event.preventDefault()
-    const name = event.target.name.value
+    event.preventDefault();
+    const name = event.target.name.value;
     if (!name) {
-      return
+      return;
     }
     Meteor.call(
       "party.create",
@@ -19,11 +19,11 @@ Template.createparty.events({
       },
       (err, res) => {
         if (err) {
-          console.warn(err)
+          console.warn(err);
         } else {
-          FlowRouter.go(`/party/${res}`)
+          FlowRouter.go(`/party/${res}`);
         }
       }
-    )
+    );
   },
-})
+});

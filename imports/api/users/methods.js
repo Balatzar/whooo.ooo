@@ -1,11 +1,11 @@
-import { Meteor } from "meteor/meteor"
-import { check } from "meteor/check"
-import { Accounts } from "meteor/accounts-base"
+import { Meteor } from "meteor/meteor";
+import { check } from "meteor/check";
+import { Accounts } from "meteor/accounts-base";
 
 Meteor.methods({
   "user.unsafeLoggin"(username) {
-    console.log("user.unsafeLoggin")
-    check(username, String)
+    console.log("user.unsafeLoggin");
+    check(username, String);
     if (!Accounts.findUserByUsername(username)) {
       Accounts.createUser({
         username,
@@ -13,7 +13,7 @@ Meteor.methods({
         profile: {
           validated: false,
         },
-      })
+      });
     }
   },
-})
+});

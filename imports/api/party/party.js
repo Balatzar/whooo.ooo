@@ -1,9 +1,9 @@
-import { Mongo } from "meteor/mongo"
-import { SimpleSchema } from "meteor/aldeed:simple-schema"
-import { check } from "meteor/check"
-const createSlug = require("slug")
-const Chance = require("chance")
-const chance = new Chance()
+import { Mongo } from "meteor/mongo";
+import { SimpleSchema } from "meteor/aldeed:simple-schema";
+import { check } from "meteor/check";
+const createSlug = require("slug");
+const Chance = require("chance");
+const chance = new Chance();
 
 const partySchema = new SimpleSchema({
   name: {
@@ -42,29 +42,29 @@ const partySchema = new SimpleSchema({
     type: Date,
     optional: false,
   },
-})
+});
 
 class PartyCollection extends Mongo.Collection {
   insert(doc, callback) {
-    const ourDoc = doc
-    ourDoc.createdAt = new Date()
-    ourDoc.slug = createUniqueSlug(doc.name)
-    console.log(ourDoc)
+    const ourDoc = doc;
+    ourDoc.createdAt = new Date();
+    ourDoc.slug = createUniqueSlug(doc.name);
+    console.log(ourDoc);
     try {
-      check(ourDoc, partySchema)
-      super.insert(ourDoc, callback)
-      return ourDoc.slug
+      check(ourDoc, partySchema);
+      super.insert(ourDoc, callback);
+      return ourDoc.slug;
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 }
 
-const Party = new PartyCollection("parties")
+const Party = new PartyCollection("parties");
 
-export default Party
+export default Party;
 
 function createUniqueSlug(name) {
-  const slug = `${createSlug(name).toLowerCase()}${chance.millisecond()}`
-  return Party.findOne({ slug }) ? createUniqueSlug(name) : slug
+  const slug = `${createSlug(name).toLowerCase()}${chance.millisecond()}`;
+  return Party.findOne({ slug }) ? createUniqueSlug(name) : slug;
 }
