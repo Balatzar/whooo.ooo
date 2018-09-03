@@ -1,7 +1,7 @@
 <template name="create">
   <div class="container centered">
     {{ # if getError }}
-      {{ > error text=getError }}
+    {{ > error text=getError }}
     {{ / if }}
     {{ #unless isMobile}}
     <h2>Créer une party</h2>
@@ -10,16 +10,16 @@
       <span class="textHr">ou bien</span>
     </div>
     {{ /unless }}
-    {{ # if isMobile }}   
+    {{ # if isMobile }}
     <p class="descIntro"><img src="/images/burbs_ico.svg"></p>
     {{ / if }}
     <h2>Rejoindre une Party</h2>
     <form>
       <fieldset class="form-fieldset ui-input __first">
         <input type="text" id="party_id" name="party_id" tabindex="0" />
-          <label>
-            <span data-text="ID de la party">ID de la party</span>
-          </label>  
+        <label>
+          <span data-text="ID de la party">ID de la party</span>
+        </label>
       </fieldset>
       <div class="form-footer">
         <input type="submit" class="btn" value="GO !" />
