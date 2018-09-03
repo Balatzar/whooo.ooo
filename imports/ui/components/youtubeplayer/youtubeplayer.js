@@ -116,7 +116,9 @@ Template.youtubeplayer.onRendered(() => {
 
   // This function is called by initialize()
   function updateProgressBar() {
-    $("#progress-bar").val(player.getCurrentTime() / player.getDuration() * 100)
+    $("#progress-bar").val(
+      (player.getCurrentTime() / player.getDuration()) * 100
+    )
   }
 })
 

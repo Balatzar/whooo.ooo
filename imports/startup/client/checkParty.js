@@ -6,7 +6,8 @@ const checkUser = setInterval(() => {
     const r = new RegExp("^/party/")
     clearInterval(checkUser)
     if (
-      !r.test(FlowRouter.current().path) && Meteor.user().profile.currentParty
+      !r.test(FlowRouter.current().path) &&
+      Meteor.user().profile.currentParty
     ) {
       Meteor.call("party.removeBurd", (err, res) => {
         if (err) {
