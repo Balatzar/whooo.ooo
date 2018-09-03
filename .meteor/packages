@@ -23,7 +23,6 @@ kadira:blaze-layout
 adrianliaw:youtube-iframe-api
 aldeed:simple-schema
 session@1.1.7
-u2622:persistent-session
 http@1.4.1
 accounts-password@1.5.1
 mizzao:user-status

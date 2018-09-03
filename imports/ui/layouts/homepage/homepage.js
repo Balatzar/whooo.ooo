@@ -12,7 +12,9 @@ Template.homepage.onRendered(() => {
     FlowRouter.go("createPage")
   }
   $(".popup button").click(function hideModale() {
-    $(this).parent().addClass("hidden")
+    $(this)
+      .parent()
+      .addClass("hidden")
     $(".dimmer").remove()
     Session.set("seenModal", true)
   })
@@ -27,13 +29,13 @@ Template.homepage.helpers({
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
         navigator.userAgent
-      ) || width < 900
+      ) ||
+      width < 900
     ) {
       return true
     }
     return false
   },
-
 })
 
 Template.homepage.events({

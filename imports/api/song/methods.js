@@ -18,18 +18,21 @@ Meteor.methods({
     console.log("song.createFromUrl")
     check(url, String)
     const str = url
-    const intIndex = str.indexOf("v=") !== -1
-      ? str.indexOf("v=") + 2
-      : str.indexOf("be/") + 3
+    const intIndex =
+      str.indexOf("v=") !== -1 ? str.indexOf("v=") + 2 : str.indexOf("be/") + 3
     const id = str.substring(intIndex, intIndex + 11)
-    const song = Song.findOne({ id })
+    const song = Song.findOne({
+      id,
+    })
     console.log(song)
     if (song) {
       song.owner = this.userId
       return SongParty.insert(song)
     }
     try {
-      const yturl = `${youtubeurl}/videos?part=snippet&id=${id}&key=${Meteor.settings.YOUTUBEAPI}`
+      const yturl = `${youtubeurl}/videos?part=snippet&id=${id}&key=${
+        Meteor.settings.YOUTUBEAPI
+      }`
       console.log(yturl)
       const res = HTTP.get(yturl)
       const yt = Object.assign({}, res.data.items[0].snippet, {
@@ -49,7 +52,9 @@ Meteor.methods({
     check(query, String)
     try {
       const res = HTTP.get(
-        `${youtubeurl}/search?part=snippet&q=${query}&videoEmbeddable=true&type=video&key=${Meteor.settings.YOUTUBEAPI}`
+        `${youtubeurl}/search?part=snippet&q=${query}&videoEmbeddable=true&type=video&key=${
+          Meteor.settings.YOUTUBEAPI
+        }`
       )
       const results = res.data
       return results

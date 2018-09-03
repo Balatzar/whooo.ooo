@@ -64,10 +64,6 @@
       "meteor/no-session": 0,
       "no-alert": 1,
       "no-console": 1,
-      "semi": [
-        "error",
-        "never"
-      ],
       "no-use-before-define": [
         "error",
         {
