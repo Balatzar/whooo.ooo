@@ -1,3 +1,15 @@
+# WHOOO.OOO
+
+### TODO MVP
+
+- Avoir exactement les mêmes fonctionnalités sur mobile et web
+  - Recherche youtube sur web
+  - Création de party sur mobile
+- Remplacer le nom de la party par un slug simple. Créer une party devient un simple bouton qui envoit vers la party vide (pas de formulaire)
+_ Rendre l'accès a une party encore plus rapide
+
+### TODO le projet si ça marche
+
 - comptes
 - notion amis
 - qr code invitation
