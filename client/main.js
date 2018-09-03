@@ -1,5 +1,3 @@
-import { Template } from "meteor/templating"
-
 import "../imports/startup/client"
 import "./main.css"
 
